@@ -1,0 +1,5 @@
+{
+  "display": "bundle",
+  "extends": ["./tsconfig.strict.json", "./tsconfig.base.json"],
+  "compilerOptions": {}
+}

@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./",
+    "types": ["node"]
+  },
+  "display": "Backend",
+  "exclude": ["./tsup.ts"],
+  "extends": "../../configs/typescript/tsconfig.bundle.json",
+  "include": ["**/*"]
+}

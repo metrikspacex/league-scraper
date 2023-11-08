@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "noEmit": true
+  },
+  "display": "eslint",
+  "extends": ["./tsconfig.strict.json", "./tsconfig.base.json"],
+  "include": ["../../**/*"]
+}

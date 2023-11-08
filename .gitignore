@@ -1,0 +1,5 @@
+# Builds
+**/dist/**
+
+# NPM
+**/node_modules/**

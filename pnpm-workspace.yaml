@@ -1,0 +1,4 @@
+packages:
+  - "./workspace/backend/"
+  - "./workspace/frontend/"
+  - "./workspace/rake-request/"
