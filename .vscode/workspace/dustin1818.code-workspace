@@ -1,4 +1,5 @@
 {
+  // EDIT ME
   "extensions": {
     "recommendations": [
       "DavidAnson.vscode-markdownlint",
@@ -257,7 +258,7 @@
     "editor.bracketPairColorization.enabled": false,
     "editor.codeActionsOnSave": {
       "source.fixAll": false,
-      "source.fixAll.eslint": true,
+      "source.fixAll.eslint": false,
       "source.organizeImports": false,
       "source.sortPackageJson": true
     },
@@ -386,6 +387,7 @@
       "typescript",
       "typescriptreact"
     ],
+    "eslint.run": "onSave",
     "eslint.timeBudget.onFixes": {
       "error": 6000,
       "warn": 6000
@@ -721,14 +723,6 @@
     "scss.lint.vendorPrefix": "error",
     "scss.lint.zeroUnits": "error",
     "scss.validate": true,
-    // Stylelint
-    "stylelint.enable": true,
-    "stylelint.packageManager": "pnpm",
-    "stylelint.reportDescriptionlessDisables": true,
-    "stylelint.reportInvalidScopeDisables": true,
-    "stylelint.reportNeedlessDisables": true,
-    "stylelint.validate": ["css", "scss", "less", "postcss"],
-    "stylelint.configFile": ".stylelintrc.json",
     // Testing
     "testing.alwaysRevealTestOnStateChange": true,
     "testing.autoRun.delay": 10000,

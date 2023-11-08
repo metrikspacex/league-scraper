@@ -1,9 +1,5 @@
 # Builds
 **/dist/**
 
-
-# Environment
-.env.*.local
-
 # NPM
 **/node_modules/**

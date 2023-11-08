@@ -1,4 +1,4 @@
 packages:
-  - "./workspace/backend/"
-  - "./workspace/frontend/"
-  - "./workspace/rake-request/"
+  - "./workspaces/backend/"
+  - "./workspaces/frontend/"
+  - "./workspaces/rake-request/"

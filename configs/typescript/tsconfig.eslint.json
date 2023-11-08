@@ -5,5 +5,5 @@
   },
   "display": "eslint",
   "extends": ["./tsconfig.strict.json", "./tsconfig.base.json"],
-  "include": ["../../**/*"]
+  "include": ["../../**/*.d.ts", "../../**/*.ts", "../../**/*.tsx"]
 }
