@@ -1,0 +1,10 @@
+.home {
+  position: relative;
+  background: #101010;
+  height: 100vh;
+  z-index: 3;
+  color: #fff;
+  @media screen and (max-width: 450px) {
+    height: 75vh;
+  }
+}
