@@ -12,8 +12,8 @@
   "license": "MIT",
   "type": "module",
   "workspaces": [
-    "porjects/backend/",
-    "porjects/frontend/"
+    "projects/backend/",
+    "projects/frontend/"
   ],
   "scripts": {
     "build": "pnpm run build:backend && pnpm run build:frontend",
