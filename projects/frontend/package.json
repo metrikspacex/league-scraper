@@ -2,6 +2,13 @@
   "name": "@league-scraper/frontend",
   "version": "0.0.1",
   "private": true,
+  "homepage": "https://github.com/metrikspacex/league-scraper",
+  "bugs": "https://github.com/metrikspacex/league-scraper/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/metrikspacex/league-scraper.git",
+    "directory": "packages/frontend"
+  },
   "type": "module",
   "scripts": {
     "build": "tsc && vite build",

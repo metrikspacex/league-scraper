@@ -70,7 +70,7 @@ const backendConfig = defineFlatConfig([
       parserOptions: {
         ecmaVersion: 2020,
         parser: typescriptParser,
-        project: ["./projects/frontend/tsconfig.json"],
+        project: ["./projects/backend/tsconfig.json"],
         sourceType: "module",
         tsconfigRootDir: __dirname,
       },
@@ -181,12 +181,13 @@ const backendConfig = defineFlatConfig([
       "consistent-return": ["off"],
       curly: ["off"],
       "default-case": ["error"],
-      "dot-notation": ["error"],
+      "dot-notation": ["off"],
       eqeqeq: ["error", "always", { null: "never" }],
       "func-names": ["off"],
       "func-style": ["off"],
       "guard-for-in": ["error"],
       "id-length": ["off"],
+      "import/default": ["off"],
       "import/extensions": ["off"],
       "import/first": ["error"],
       "import/namespace": [
@@ -199,6 +200,7 @@ const backendConfig = defineFlatConfig([
       "import/no-duplicates": ["error"],
       "import/no-extraneous-dependencies": ["error"],
       "import/no-named-as-default": ["off"],
+      "import/no-named-as-default-member": ["off"],
       "import/no-nodejs-modules": [
         "error",
         { allow: builtinModules.map((mod) => `node:${mod}`) },
@@ -288,7 +290,6 @@ const backendConfig = defineFlatConfig([
             "groupCollapsed",
             "groupEnd",
             "info",
-            "log",
             "profile",
             "profileEnd",
             "table",
@@ -587,9 +588,11 @@ const frontendConfig = defineFlatConfig([
         },
       ],
       "import/newline-after-import": ["error"],
+      "import/no-default-export": ["off"],
       "import/no-duplicates": ["error"],
-      "import/no-extraneous-dependencies": ["error"],
+      "import/no-extraneous-dependencies": ["off"],
       "import/no-named-as-default": ["off"],
+      "import/no-named-as-default-member": ["off"],
       "import/no-nodejs-modules": [
         "error",
         { allow: builtinModules.map((mod) => `node:${mod}`) },
@@ -925,6 +928,7 @@ const frontendConfig = defineFlatConfig([
 ]);
 
 export default defineFlatConfig([
+  ...backendConfig,
   ...frontendConfig,
   {
     files: ["eslint.config.js"],

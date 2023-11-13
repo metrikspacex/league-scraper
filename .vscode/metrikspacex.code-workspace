@@ -113,9 +113,23 @@
         "skipFiles": ["<node_internals>/**"],
         "type": "node"
       },
+      // Backend scripts
+      // Dev
+      {
+        "args": [],
+        "console": "internalConsole",
+        "envFile": "${workspaceFolder}/projects/backend/environments/.env.development.local",
+        "name": "dev backend",
+        "outputCapture": "console",
+        "request": "launch",
+        "runtimeArgs": ["dev:backend"],
+        "runtimeExecutable": "pnpm",
+        "skipFiles": ["<node_internals>/**"],
+        "type": "node"
+      },
       // Runtimes
       {
-        "args": ["${file}"],
+        "args": ["--watch", "${file}"],
         "console": "internalConsole",
         "name": "tsx",
         "outputCapture": "console",
@@ -127,7 +141,7 @@
       },
       // Runtimes
       {
-        "args": ["${file}"],
+        "args": ["--watch", "${file}"],
         "console": "internalConsole",
         "name": "node",
         "outputCapture": "console",
@@ -289,7 +303,7 @@
     "code-runner.clearPreviousOutput": false,
     "code-runner.executorMap": {
       "javascript": "node",
-      "typescript": "tsx"
+      "typescript": "tsx --watch"
     },
     "code-runner.respectShebang": true,
     "code-runner.saveAllFilesBeforeRun": true,
@@ -326,6 +340,7 @@
     "css.lint.zeroUnits": "error",
     "css.validate": true,
     // Debugger
+    "debug.toolBarLocation": "commandCenter",
     "debug.autoExpandLazyVariables": true,
     "debug.confirmOnExit": "always",
     "debug.console.collapseIdenticalLines": false,
@@ -502,7 +517,7 @@
       "**/.DS_Store": true,
       "**/Thumbs.db": true,
       "**/node_modules": true,
-      "**/package.json": true,
+      "**/package.json": false,
       ".eslint.config.js": true,
       ".gitignore": true,
       ".markdown*": true,
@@ -515,8 +530,10 @@
       "pnpm-*": true,
       "projects/backend": false,
       "projects/frontend": true,
+      "**/dist": true,
+      "eslint.config.js": false,
       "prettier*": true,
-      "eslint.config.js": true
+      "projects/backend/tsup.ts": true
     },
     // ___EXCLUDES___
     // Git
