@@ -1,9 +1,8 @@
 # Builds
 **/dist/**
 
+# Cache
+**/.cache/**
+
 # NPM
 **/node_modules/**
-
-# HTML
-**/*.html
-*html

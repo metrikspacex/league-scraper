@@ -1,0 +1,17 @@
+{
+  "name": "@league-scraper/frontend",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "",
+    "clean": "",
+    "dev": "",
+    "eslint": "eslint . --cache --ext ts,tsx --max-warnings 0",
+    "lint": "pnpm run eslint && pnpm run prettier",
+    "prettier": "",
+    "preview": ""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
