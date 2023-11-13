@@ -1,0 +1,6 @@
+{
+  "version": "1.0.0",
+  "devDependencies": {
+    "cypress": "^13.5.0"
+  }
+}
