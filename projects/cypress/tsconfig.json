@@ -20,14 +20,7 @@
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "paths": {
-      "@/assets/*": ["./src/assets/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/pages/*": ["./src/pages/*"],
-      "@/routes/*": ["./src/routes/*"],
-      "@/src/*": ["./src/*"],
-      "@/styles/*": ["src/styles/*"]
-    },
+    "paths": {},
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
@@ -36,5 +29,5 @@
     "types": ["node"],
     "useDefineForClassFields": true
   },
-  "include": ["src", "tests", "tsup.config.ts", "types"]
+  "include": ["."]
 }

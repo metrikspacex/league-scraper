@@ -530,10 +530,12 @@
       "pnpm-*": true,
       "projects/backend": false,
       "projects/frontend": true,
+      "projects/cypress": true,
       "**/dist": true,
-      "eslint.config.js": false,
+      "eslint.config.js": true,
       "prettier*": true,
-      "projects/backend/tsup.ts": true
+      "projects/backend/tsup.ts": true,
+      "projects/backend/data": true
     },
     // ___EXCLUDES___
     // Git

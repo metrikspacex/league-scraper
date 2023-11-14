@@ -1,6 +1,10 @@
 {
   "version": "1.0.0",
-  "devDependencies": {
+  "type": "module",
+  "dependencies": {
     "cypress": "^13.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
   }
 }

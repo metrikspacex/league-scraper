@@ -5,10 +5,8 @@
 # Environment
 .env.*.local
 
+# Mongodb
+**/data/**
+
 # NPM
 **/node_modules/**
-
-# Workspace folder
-# Make sure it isn't reimplemented back into git
-**/workspace/**
-**/workspaces/**/
