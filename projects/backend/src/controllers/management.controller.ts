@@ -7,7 +7,8 @@ class ManagementController {
     _next: NextFunction
   ): Promise<void> {
     _response.json({
-      status: "MANAGEMENT",
+      ..._request.hateos,
+      _response: {},
     });
     _next();
   }

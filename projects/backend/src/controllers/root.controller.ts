@@ -7,9 +7,8 @@ class RootController {
     _next: NextFunction
   ): Promise<void> {
     _response.status(200).json({
-      // @ts-expect-error
       ..._request.hateos,
-      message: "Hello World!",
+      _response: {},
     });
     _next();
   }

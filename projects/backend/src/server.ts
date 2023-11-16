@@ -46,7 +46,7 @@ class Server {
     this.application.use(
       bodyParser.urlencoded({ extended: true, limit: "50mb" })
     );
-    this.application.use("/*", hateos);
+    this.application.use(hateos);
   }
   private loadRoutes(): void {
     Logger.get().info("Server", "Loading routes");
