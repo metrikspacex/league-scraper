@@ -1,9 +1,27 @@
 import "../welcome/welcome.scss";
-import videoLeague from "../../../assets/y2mate.com - League of Legends  4K Season 2020 Cinematic Warriors Trailer ft 2WEI and Edda Hayes_1080p.mp4";
+import videoLeague from "@/assets/y2mate.com - League of Legends  4K Season 2020 Cinematic Warriors Trailer ft 2WEI and Edda Hayes_1080p.mp4";
+import leaguePlays from "@/assets/y2mate.com - Awaken  Season 2019 Cinematic  League of Legends ft Valerie Broussard_1080p.mp4";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
+import {
+  faRightToBracket,
+  faPlayCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 export default function Welcome() {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+    document.body.style.overflow = "hidden"; // Disable scrolling when the modal is open
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    document.body.style.overflow = "auto"; // Enable scrolling when the modal is closed
+    console.log("close btn clicked");
+  };
+
   return (
     <>
       <section className="welcome container">
@@ -109,6 +127,30 @@ export default function Welcome() {
             </div>
           </a>
         </div>
+      </section>
+
+      <section className="video-full" onClick={openModal}>
+        <div className="video-caption">
+          <h2>Check Some of the League Videos</h2>
+          <FontAwesomeIcon className="icon" icon={faPlayCircle} />
+          <p>Watch the video</p>
+        </div>
+        <div className="video-container">
+          <video src={leaguePlays} autoPlay muted loop></video>
+        </div>
+
+        {isModalOpen && (
+          <div className="modal-overlay">
+            <div className="modal">
+              <span className="close" onClick={closeModal}>
+                &times;
+              </span>
+              <div className="modal-content">
+                <video src={leaguePlays} autoPlay muted loop></video>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
     </>
   );
