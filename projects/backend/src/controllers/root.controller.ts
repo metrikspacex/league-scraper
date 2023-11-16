@@ -8,7 +8,6 @@ class RootController {
   ): Promise<void> {
     _response.status(200).json({
       ..._request.hateos,
-      _response: {},
     });
     _next();
   }

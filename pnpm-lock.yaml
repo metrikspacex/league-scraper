@@ -23,6 +23,9 @@ importers:
       '@typescript-eslint/parser':
         specifier: ^6.10.0
         version: 6.10.0(eslint@8.53.0)(typescript@5.2.2)
+      concurrently:
+        specifier: ^8.2.2
+        version: 8.2.2
       eslint:
         specifier: ^8.53.0
         version: 8.53.0
@@ -149,6 +152,9 @@ importers:
       nanoid:
         specifier: ^5.0.3
         version: 5.0.3
+      response-time:
+        specifier: ^2.3.2
+        version: 2.3.2
       rimraf:
         specifier: ^5.0.5
         version: 5.0.5
@@ -6560,6 +6566,14 @@ packages:
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
     dev: true
+
+  /response-time@2.3.2:
+    resolution: {integrity: sha512-MUIDaDQf+CVqflfTdQ5yam+aYCkXj1PY8fjlPDQ6ppxJlmgZb864pHtA750mayywNg8tx4rS7qH9JXd/OF+3gw==}
+    engines: {node: '>= 0.8.0'}
+    dependencies:
+      depd: 1.1.2
+      on-headers: 1.0.2
+    dev: false
 
   /reusify@1.0.4:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}

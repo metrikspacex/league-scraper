@@ -1,8 +1,9 @@
 import bodyParser from "body-parser";
 import express from "express";
+import morgan from "morgan";
 
 import { ServerConfigs } from "@/configs";
-import { hateos } from "@/middlewares";
+import { hateos, routeLog } from "@/middlewares";
 import {
   healthRoutes,
   managementRoutes,
@@ -25,7 +26,8 @@ class Server {
       this.application.get("port"),
       this.application.get("hostname"),
       () => {
-        Logger.get().info(
+        Logger.get().log(
+          "#3BB143",
           "Server",
           `Server is running ${this.application.get(
             "hostname"
@@ -36,20 +38,21 @@ class Server {
     );
   }
   private loadConfigurations(): void {
-    Logger.get().info("Server", "Loading configurations");
+    Logger.get().log("#3BB143", "Server", "Loading configurations");
     this.application.set("hostname", ServerConfigs.get().hostname);
     this.application.set("port", ServerConfigs.get().port);
   }
   private loadMiddlewares(): void {
-    Logger.get().info("Server", "Loading middlewares");
+    Logger.get().log("#3BB143", "Server", "Loading middlewares");
     this.application.use(bodyParser.json({ limit: "50mb" }));
     this.application.use(
       bodyParser.urlencoded({ extended: true, limit: "50mb" })
     );
+    this.application.use(routeLog);
     this.application.use(hateos);
   }
   private loadRoutes(): void {
-    Logger.get().info("Server", "Loading routes");
+    Logger.get().log("#3BB143", "Server", "Loading routes");
     this.application.use("/", rootRoutes);
     this.application.use("/health", healthRoutes);
     this.application.use("/management", managementRoutes);

@@ -6,7 +6,7 @@ class HealthController {
     _response: Response,
     _next: NextFunction
   ): Promise<void> {
-    _response.json({
+    _response.status(200).json({
       ..._request.hateos,
       _response: {},
     });
