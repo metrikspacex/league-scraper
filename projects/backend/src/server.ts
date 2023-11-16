@@ -1,6 +1,7 @@
 import bodyParser from "body-parser";
 import express from "express";
 
+import { ServerConfigs } from "@/configs";
 import { healthRoutes, userRoutes } from "@/routes";
 import { Logger } from "@/utilities";
 
@@ -9,10 +10,10 @@ class Server {
   private readonly hostname: string;
   private readonly port: number;
 
-  public constructor(host: string, port: number) {
+  public constructor() {
     this.application = express();
-    this.hostname = host;
-    this.port = port;
+    this.hostname = ServerConfigs.get().hostname;
+    this.port = ServerConfigs.get().port;
   }
   public start(callback: () => void): void {
     this.loadConfigurations();
@@ -33,6 +34,6 @@ class Server {
     this.application.use("/user", userRoutes);
   }
 }
-export default new Server("127.0.0.1", 3100).start(() => {
+export default new Server().start(() => {
   Logger.get().info("Server", "Server is running");
 });
