@@ -1,16 +1,18 @@
 import type { NextFunction, Request, Response } from "express";
 
-class UserController {
+class RootController {
   public async index(
     _request: Request,
     _response: Response,
     _next: NextFunction
   ): Promise<void> {
-    _response.json({
-      status: "USER",
+    _response.status(200).json({
+      // @ts-expect-error
+      ..._request.hateos,
+      message: "Hello World!",
     });
     _next();
   }
 }
 
-export { UserController };
+export { RootController };

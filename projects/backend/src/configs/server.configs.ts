@@ -1,6 +1,7 @@
 class ServerConfigs {
   private static readonly _hostname: string = "127.0.0.1";
   private static readonly _port: number = 3100;
+  private static readonly _protocol: string = "http";
   private static instance: ServerConfigs | null = null;
   private constructor() {}
   public static get(): ServerConfigs {
@@ -14,6 +15,9 @@ class ServerConfigs {
   }
   public get port(): number {
     return ServerConfigs._port;
+  }
+  public get protocol(): string {
+    return ServerConfigs._protocol;
   }
 }
 

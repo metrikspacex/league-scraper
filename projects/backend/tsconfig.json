@@ -27,6 +27,7 @@
       "@/models": ["./src/models"],
       "@/routes": ["./src/routes"],
       "@/services": ["./src/services"],
+      "@/types": ["./types/"],
       "@/utilities": ["src/utilities"]
     },
     "resolveJsonModule": true,
@@ -35,7 +36,8 @@
     "strictNullChecks": true,
     "target": "ES2020",
     "types": ["node"],
+    "typeRoots": ["./node_modules/@types", "./types/"],
     "useDefineForClassFields": true
   },
-  "include": ["src", "tests", "tsup.config.ts", "types"]
+  "include": ["src", "tests", "tsup.config.ts", "./types/"]
 }

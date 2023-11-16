@@ -6,7 +6,9 @@ class HealthController {
     _response: Response,
     _next: NextFunction
   ): Promise<void> {
-    _response.json({});
+    _response.json({
+      status: "HEALTH",
+    });
     _next();
   }
 }

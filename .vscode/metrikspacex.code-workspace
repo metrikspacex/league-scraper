@@ -520,9 +520,9 @@
       "**/dist": true,
       "**/docker-compose.yml": true,
       "**/mocharc.yml": true,
-      "**/node_modules": true,
+      "**/node_modules": false,
       "**/package.json": true,
-      "**/tsconfig*": true,
+      "**/tsconfig*": false,
       ".eslint.config.js": true,
       ".gitignore": true,
       ".markdown*": true,
@@ -537,13 +537,14 @@
       "prettier*": true,
       "projects/backend": false,
       "projects/backend/data": true,
+      "projects/backend/environments": true,
       "projects/backend/public": true,
       "projects/backend/tests": true,
       "projects/backend/tsup.config.ts": true,
       "projects/backend/tsup.ts": true,
       "projects/cypress": true,
       "projects/frontend": true,
-      "projects/backend/types": true
+      "projects/backend/types": false
     },
     // ___EXCLUDES___
     // Git
