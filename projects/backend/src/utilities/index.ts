@@ -1,2 +1,2 @@
-export * from "./db-connection.utilities";
+export * from "./database.utilities";
 export * from "./logger.utilities";

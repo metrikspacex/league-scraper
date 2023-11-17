@@ -60,7 +60,7 @@
           "${workspaceFolder}/projects/backend/src/server.ts"
         ],
         "console": "internalConsole",
-        "name": "dev:backend:isolated",
+        "name": "backend:dev:isolated",
         "outputCapture": "console",
         "request": "launch",
         "runtimeArgs": ["tsx"],
@@ -68,11 +68,15 @@
         "skipFiles": ["<node_internals>/**"],
         "type": "node"
       },
-      // Runtimes
+      // Backend Runtimes
       {
-        "args": ["--watch", "${file}"],
+        "args": [
+          "--tsconfig=${workspaceFolder}/projects/backend/tsconfig.json",
+          "--watch",
+          "${file}"
+        ],
         "console": "internalConsole",
-        "name": "tsx",
+        "name": "backend:dev:tsx",
         "outputCapture": "console",
         "request": "launch",
         "runtimeArgs": ["tsx"],
@@ -80,11 +84,11 @@
         "skipFiles": ["<node_internals>/**"],
         "type": "node"
       },
-      // Runtimes
+      // Backend Runtimes
       {
         "args": ["--watch", "${file}"],
         "console": "internalConsole",
-        "name": "node",
+        "name": "backend:dev:node",
         "outputCapture": "console",
         "request": "launch",
         "runtimeArgs": ["node"],
@@ -459,14 +463,14 @@
       "**/Thumbs.db": true,
       "**/.eslintcache": true,
       "**/node_modules": true,
-      "**/package.json": true,
+      "**/package.json": false,
       "**/tsconfig*": true,
       "*markdownlint*": true,
       "*prettier*": true,
       ".github": true,
-      ".gitignore": true,
+      ".gitignore": false,
       ".husky": true,
-      ".npmrc": true,
+      ".npmrc": false,
       ".nvmrc": true,
       ".stylelint*": true,
       ".vscodeignore": true,

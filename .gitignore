@@ -1,7 +1,6 @@
 # Builds
 **/dist/**
 
-
 # Environment
 .env.*.local
 
@@ -10,3 +9,6 @@
 
 # NPM
 **/node_modules/**
+
+# Parsing Data
+/projects/backend/src/assets/tmp
