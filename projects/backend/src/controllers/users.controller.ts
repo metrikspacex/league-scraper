@@ -7,8 +7,8 @@ class UserController {
     _next: NextFunction
   ): Promise<void> {
     _response.status(200).json({
+      response: {},
       ..._request.hateos,
-      _response: {},
     });
     _next();
   }

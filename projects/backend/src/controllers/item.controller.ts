@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 
-class ManagementController {
+class ItemController {
   public async index(
     _request: Request,
     _response: Response,
@@ -14,4 +14,4 @@ class ManagementController {
   }
 }
 
-export { ManagementController };
+export { ItemController };

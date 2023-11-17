@@ -4,13 +4,13 @@ declare namespace Express {
   interface Application {}
   interface Locals {}
   interface Request {
-    hateos: {
-      _links: {
-        [key: string]: {
-          href: string;
-        };
-      };
-    };
+    hateos: Record<
+      string,
+      {
+        href?: string;
+        methods?: any;
+      }
+    >;
   }
   interface Response {}
 }

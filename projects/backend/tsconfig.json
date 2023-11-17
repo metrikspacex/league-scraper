@@ -21,6 +21,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "paths": {
+      "@/assets/*": ["./src/assets/*"],
       "@/configs": ["./src/configs"],
       "@/controllers": ["./src/controllers"],
       "@/middlewares": ["./src/middlewares"],

@@ -1,15 +1,11 @@
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
 import bodyParser from "body-parser";
 import express from "express";
-import morgan from "morgan";
 
 import { ServerConfigs } from "@/configs";
 import { hateos, routeLog } from "@/middlewares";
-import {
-  healthRoutes,
-  managementRoutes,
-  rootRoutes,
-  userRoutes,
-} from "@/routes";
 import { Logger } from "@/utilities";
 
 class Server {
@@ -48,15 +44,19 @@ class Server {
     this.application.use(
       bodyParser.urlencoded({ extended: true, limit: "50mb" })
     );
+    this.application.use(
+      "/static",
+      express.static(
+        join(dirname(fileURLToPath(import.meta.url)), "../", "public/")
+      )
+    );
     this.application.use(routeLog);
     this.application.use(hateos);
   }
   private loadRoutes(): void {
     Logger.get().log("#3BB143", "Server", "Loading routes");
-    this.application.use("/", rootRoutes);
-    this.application.use("/health", healthRoutes);
-    this.application.use("/management", managementRoutes);
-    this.application.use("/user", userRoutes);
+    const { routes } = ServerConfigs.get();
+    routes.map((route) => this.application.use(route));
   }
 }
 export default new Server().start();

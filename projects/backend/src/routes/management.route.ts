@@ -4,6 +4,6 @@ import { ManagementController } from "@/controllers";
 
 const router = Router();
 const managementController = new ManagementController();
-router.get("/", managementController.index);
+router.get("/management", managementController.index);
 
 export { router as managementRoutes };

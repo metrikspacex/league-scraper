@@ -52,77 +52,18 @@
   ],
   "launch": {
     "configurations": [
-      // Workspace scripts
-      // Build
+      // Isolated backend dev server
       {
-        "args": [],
+        "args": [
+          "--tsconfig=${workspaceFolder}/projects/backend/tsconfig.json",
+          "--watch",
+          "${workspaceFolder}/projects/backend/src/server.ts"
+        ],
         "console": "internalConsole",
-        "name": "build projects",
+        "name": "dev:backend:isolated",
         "outputCapture": "console",
         "request": "launch",
-        "runtimeArgs": ["build"],
-        "runtimeExecutable": "pnpm",
-        "skipFiles": ["<node_internals>/**"],
-        "type": "node"
-      },
-      // Clean
-      {
-        "args": [],
-        "console": "internalConsole",
-        "name": "clean projects",
-        "outputCapture": "console",
-        "request": "launch",
-        "runtimeArgs": ["clean"],
-        "runtimeExecutable": "pnpm",
-        "skipFiles": ["<node_internals>/**"],
-        "type": "node"
-      },
-      // Dev
-      {
-        "args": [],
-        "console": "internalConsole",
-        "name": "dev projects",
-        "outputCapture": "console",
-        "request": "launch",
-        "runtimeArgs": ["dev"],
-        "runtimeExecutable": "pnpm",
-        "skipFiles": ["<node_internals>/**"],
-        "type": "node"
-      },
-      // Lint
-      {
-        "args": [],
-        "console": "internalConsole",
-        "name": "lint projects",
-        "outputCapture": "console",
-        "request": "launch",
-        "runtimeArgs": ["lint"],
-        "runtimeExecutable": "pnpm",
-        "skipFiles": ["<node_internals>/**"],
-        "type": "node"
-      },
-      // Preview
-      {
-        "args": [],
-        "console": "internalConsole",
-        "name": "preview projects",
-        "outputCapture": "console",
-        "request": "launch",
-        "runtimeArgs": ["preview"],
-        "runtimeExecutable": "pnpm",
-        "skipFiles": ["<node_internals>/**"],
-        "type": "node"
-      },
-      // Backend scripts
-      // Dev
-      {
-        "args": [],
-        "console": "internalConsole",
-        "envFile": "${workspaceFolder}/projects/backend/environments/.env.development.local",
-        "name": "dev backend",
-        "outputCapture": "console",
-        "request": "launch",
-        "runtimeArgs": ["dev:backend"],
+        "runtimeArgs": ["tsx"],
         "runtimeExecutable": "pnpm",
         "skipFiles": ["<node_internals>/**"],
         "type": "node"
@@ -517,34 +458,31 @@
       "**/.DS_Store": true,
       "**/Thumbs.db": true,
       "**/.eslintcache": true,
-      "**/dist": true,
-      "**/docker-compose.yml": true,
-      "**/mocharc.yml": true,
       "**/node_modules": true,
-      "**/package.json": false,
+      "**/package.json": true,
       "**/tsconfig*": true,
-      ".eslint.config.js": true,
+      "*markdownlint*": true,
+      "*prettier*": true,
+      ".github": true,
       ".gitignore": true,
-      ".markdown*": true,
+      ".husky": true,
       ".npmrc": true,
       ".nvmrc": true,
-      ".prettier*": true,
       ".stylelint*": true,
       ".vscodeignore": true,
+      "dist": true,
       "eslint.config.js": false,
       "package-lock.json": true,
       "pnpm-*": true,
-      "prettier*": true,
-      "projects/backend": false,
-      "projects/backend/data": true,
+      "projects/backend/docker": true,
       "projects/backend/environments": true,
       "projects/backend/public": true,
       "projects/backend/tests": true,
       "projects/backend/tsup.config.ts": true,
-      "projects/backend/tsup.ts": true,
+      "projects/backend/types": true,
       "projects/cypress": true,
       "projects/frontend": true,
-      "projects/backend/types": false
+      "projects/frontend/index.html": true
     },
     // ___EXCLUDES___
     // Git
@@ -564,7 +502,6 @@
     "git.terminalAuthentication": true,
     "git.timeline.showAuthor": true,
     "git.verboseCommit": true,
-    // Copilot
     "github.copilot.advanced": {
       "enabled": true,
       "useTab": true
@@ -661,6 +598,8 @@
     "javascript.suggestionActions.enabled": false,
     "javascript.updateImportsOnFileMove.enabled": "never",
     "javascript.validate.enable": true,
+    // Jest
+    "jest.jestCommandLine": "pnpm test",
     // Json
     "json.format.enable": true,
     "json.format.keepLines": true,
