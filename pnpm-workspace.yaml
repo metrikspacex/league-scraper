@@ -1,3 +1,4 @@
 packages:
   - "./projects/backend/"
+  - "./projects/cypress/"
   - "./projects/frontend/"

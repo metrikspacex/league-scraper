@@ -1,6 +1,23 @@
 {
-  "version": "1.0.0",
+  "name": "@league-scraper/cypress",
+  "version": "0.0.1",
+  "private": true,
+  "homepage": "https://github.com/metrikspacex/league-scraper",
+  "bugs": "https://github.com/metrikspacex/league-scraper/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/metrikspacex/league-scraper.git",
+    "directory": "packages/cypress"
+  },
   "type": "module",
+  "scripts": {
+    "dev": "cypress run --headless",
+    "eslint": "eslint . --cache --max-warnings 0",
+    "lint": "pnpm run eslint && pnpm run prettier",
+    "prettier": "prettier . --check --config ../../prettier.config.js",
+    "preview": "cypress open",
+    "update": "pnpm update --latest"
+  },
   "dependencies": {
     "cypress": "^13.5.0"
   },

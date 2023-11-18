@@ -16,8 +16,9 @@
     "eslint": "eslint . --cache --max-warnings 0",
     "lint": "pnpm run eslint && pnpm run prettier && pnpm run stylelint",
     "prettier": "prettier . --check --config ../../prettier.config.js",
-    "preview": "vite preview",
-    "stylelint": "stylelint **/*.scss --config ../../.stylelintrc.json --max-warnings 0"
+    "preview": "vite preview --outDir ../../dist/frontend",
+    "stylelint": "stylelint **/*.scss --config ../../.stylelintrc.json --max-warnings 0",
+    "update": "pnpm update --latest"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",

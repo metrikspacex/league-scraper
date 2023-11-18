@@ -9,6 +9,3 @@
 
 # NPM
 **/node_modules/**
-
-# Parsing Data
-/projects/backend/src/assets/tmp

@@ -13,5 +13,4 @@ class HealthController {
     _next();
   }
 }
-
 export { HealthController };

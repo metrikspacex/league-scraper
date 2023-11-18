@@ -22,7 +22,7 @@ export default defineConfig(({ mode }) => {
       emptyOutDir: true,
       manifest: false,
       minify: false,
-      outDir: "../../dist/frontend/",
+      outDir: "../../dist/frontend",
       rollupOptions: {
         output: {
           assetFileNames: (_chunkInfo) => {
@@ -46,7 +46,7 @@ export default defineConfig(({ mode }) => {
     esbuild: {},
     plugins: [react()],
     preview: {
-      port: 3000,
+      port: 5173,
       strictPort: true,
     },
     publicDir: "./public",
@@ -82,7 +82,8 @@ export default defineConfig(({ mode }) => {
     },
     root: ".",
     server: {
-      port: 3000,
+      host: true,
+      port: 5173,
       proxy: {
         "/api": {
           changeOrigin: true,
@@ -91,6 +92,9 @@ export default defineConfig(({ mode }) => {
         },
       },
       strictPort: true,
+      watch: {
+        usePolling: true,
+      },
     },
     test: {
       alias: [

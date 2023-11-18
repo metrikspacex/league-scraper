@@ -1,0 +1,6 @@
+FROM node:latest
+
+WORKDIR /opt/cypress
+COPY . ./
+RUN npm install
+EXPOSE 5173:5173

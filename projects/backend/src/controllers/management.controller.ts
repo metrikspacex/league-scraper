@@ -13,5 +13,4 @@ class ManagementController {
     _next();
   }
 }
-
 export { ManagementController };

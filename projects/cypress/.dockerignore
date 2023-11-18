@@ -1,0 +1,11 @@
+*
+!cypress
+!downloads
+!e2e
+!fixtures
+!screenshots
+!support
+!videos
+!cypress.config.ts
+!package.json
+!tsconfig.json

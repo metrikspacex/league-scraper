@@ -13,5 +13,4 @@ class ItemController {
     _next();
   }
 }
-
 export { ItemController };

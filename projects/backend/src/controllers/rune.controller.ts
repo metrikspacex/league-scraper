@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 
-class UserController {
+class RuneController {
   public async index(
     _request: Request,
     _response: Response,
@@ -13,5 +13,4 @@ class UserController {
     _next();
   }
 }
-
-export { UserController };
+export { RuneController };

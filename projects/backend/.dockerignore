@@ -1,0 +1,9 @@
+*
+!environments
+!public
+!src
+!tests
+!types
+!package.json
+!tsconfig.json
+!tsup.config.ts

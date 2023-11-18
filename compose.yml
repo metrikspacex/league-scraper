@@ -1,0 +1,58 @@
+services:
+  backend:
+    build:
+      context: ./projects/backend/
+      dockerfile: dockerfile
+    container_name: backend
+    depends_on:
+      - database
+    image: node:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - backend:/opt/backend
+    working_dir: /opt/backend
+  cypress:
+    build:
+      context: ./projects/cypress/
+      dockerfile: dockerfile
+    container_name: cypress
+    depends_on:
+      - backend
+      - frontend
+    image: cypress/included:latest
+    ports:
+      - 4200:4200
+    volumes:  
+      - cypress:/opt/cypress
+    working_dir: /opt/cypress
+  database:
+    container_name: database
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    volumes:
+      - database:/var/lib/postgresql/data
+  frontend:
+    build:
+      context: ./projects/frontend/
+      dockerfile: dockerfile
+    container_name: frontend
+    depends_on:
+      - backend
+      - database
+    image: node:latest
+    ports:
+      - 5173:5173
+    volumes:
+      - frontend:/opt/frontend
+    working_dir: /opt/frontend
+version: "3.8"
+volumes:
+  backend:
+  cypress:
+  database:
+  frontend:

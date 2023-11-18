@@ -3,6 +3,6 @@ import { Router } from "express";
 import { RootController } from "@/controllers";
 
 const router = Router();
-const rootController = new RootController();
-router.get("/", rootController.index);
+const controller = new RootController();
+router.get("/", controller.index);
 export { router as rootRoutes };

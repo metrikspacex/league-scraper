@@ -1,0 +1,7 @@
+FROM cypress/included:latest
+
+WORKDIR /opt/cypress
+COPY . ./
+RUN npm install
+EXPOSE 4200:4200
+SHELL ["/bin/bash", "-c"]

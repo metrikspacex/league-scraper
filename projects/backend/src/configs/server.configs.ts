@@ -1,12 +1,19 @@
 import type { Router } from "express";
 
 import {
-  championRoutes,
+  accountRoutes,
+  assetRoutes,
+  challengeRoutes,
   healthRoutes,
   itemRoutes,
+  languageRoutes,
   managementRoutes,
+  masteryRoutes,
+  regionRoutes,
   rootRoutes,
-  userRoutes,
+  runeRoutes,
+  spellRoutes,
+  versionRoutes,
 } from "@/routes";
 
 class ServerConfigs {
@@ -14,14 +21,22 @@ class ServerConfigs {
   private static readonly _hostname: string = "127.0.0.1";
   private static readonly _routes: Router[] = [
     rootRoutes,
-    championRoutes,
+    accountRoutes,
+    assetRoutes,
+    challengeRoutes,
     healthRoutes,
     itemRoutes,
+    languageRoutes,
     managementRoutes,
-    userRoutes,
+    masteryRoutes,
+    regionRoutes,
+    runeRoutes,
+    spellRoutes,
+    versionRoutes,
   ];
-  private static readonly _port: number = 3100;
+  private static readonly _port: number = 3000;
   private static readonly _protocol: string = "http";
+  private static readonly _version: string = "v1";
   private static instance: ServerConfigs | null = null;
   private constructor() {}
   public static get(): ServerConfigs {
@@ -44,6 +59,9 @@ class ServerConfigs {
   }
   public get protocol(): string {
     return ServerConfigs._protocol;
+  }
+  public get version(): string {
+    return ServerConfigs._version;
   }
 }
 

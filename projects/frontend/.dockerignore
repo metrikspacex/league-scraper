@@ -1,0 +1,11 @@
+*
+!environments
+!public
+!src
+!tests
+!types
+!index.html
+!package.json
+!tsconfig.json
+!tsconfig.vite.json
+!vite.config.ts

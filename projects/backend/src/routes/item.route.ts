@@ -3,6 +3,6 @@ import { Router } from "express";
 import { ItemController } from "@/controllers";
 
 const router = Router();
-const itemController = new ItemController();
-router.get("/item", itemController.index);
+const controller = new ItemController();
+router.get("/item", controller.index);
 export { router as itemRoutes };
