@@ -2,25 +2,30 @@ import "../welcome/welcome.scss";
 import videoLeague from "@/assets/y2mate.com - League of Legends  4K Season 2020 Cinematic Warriors Trailer ft 2WEI and Edda Hayes_1080p.mp4";
 import leaguePlays from "@/assets/y2mate.com - Awaken  Season 2019 Cinematic  League of Legends ft Valerie Broussard_1080p.mp4";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import armor from "@/assets/armor.png";
+import award from "@/assets/award.png";
+import cinema from "@/assets/cinema.png";
+import item from "@/assets/league-items.png";
+import runes from "@/assets/league-runes.png";
+import lores from "@/assets/league-story.png";
 import {
   faRightToBracket,
   faPlayCircle,
+  faClose,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 export default function Welcome() {
   const [isModalOpen, setModalOpen] = useState(false);
-
   const openModal = () => {
-    setModalOpen(true);
-    document.body.style.overflow = "hidden"; // Disable scrolling when the modal is open
+    setModalOpen(!isModalOpen);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
-    document.body.style.overflow = "auto"; // Enable scrolling when the modal is closed
-    console.log("close btn clicked");
-  };
+  if (isModalOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
 
   return (
     <>
@@ -131,7 +136,10 @@ export default function Welcome() {
 
       <section className="video-full" onClick={openModal}>
         <div className="video-caption">
-          <h2>Check Some of the League Videos</h2>
+          <h2>
+            Check Some of Our <span style={{ color: "#ae3335" }}>League</span>{" "}
+            Videos
+          </h2>
           <FontAwesomeIcon className="icon" icon={faPlayCircle} />
           <p>Watch the video</p>
         </div>
@@ -142,15 +150,131 @@ export default function Welcome() {
         {isModalOpen && (
           <div className="modal-overlay">
             <div className="modal">
-              <span className="close" onClick={closeModal}>
-                &times;
-              </span>
+              <button className="close">
+                <FontAwesomeIcon icon={faClose} />
+              </button>
               <div className="modal-content">
-                <video src={leaguePlays} autoPlay muted loop></video>
+                <video src={leaguePlays} autoPlay controls muted></video>
               </div>
             </div>
           </div>
         )}
+      </section>
+
+      <section className="riot-features container">
+        <h2>
+          What <span style={{ color: "#ae3335" }}>Riot Games </span>
+          Can Offer?
+        </h2>
+
+        <div className="grid">
+          <div className="feature">
+            <img src={armor} alt={armor} />
+            <h4>Check the Heroes</h4>
+            <p>
+              Check the League of Legends heroes and know more about their bio
+              as well as skills.
+            </p>
+          </div>
+          <div className="feature">
+            <img src={cinema} alt={cinema} />
+            <h4>Cinema Reels of Riot Videos</h4>
+            <p>
+              Check the League of Legends Reels about tournaments, trailers,
+              music videos and more.
+            </p>
+          </div>
+          <div className="feature">
+            <img src={award} alt={award} />
+            <h4>Top Rank Players</h4>
+            <p>Check the League of Legends top players in all regions as we</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="riot-slideshow container">
+        <h2>
+          Dive into the <span style={{ color: "#ae3335" }}>Rift</span>
+        </h2>
+        <p>
+          Embark on a journey through the thrilling realms of League of Legends,
+          where strategy meets mayhem in this epic slideshow adventure. Unleash
+          the champions, witness the battles, and dive into the heart of the
+          League!
+        </p>
+
+        <div className="slideshow-wrapper">
+          <div className="left-col">
+            <div className="text-wrap">
+              <h1>
+                View <span style={{ color: "#ae3335" }}>Popular</span> Builds
+              </h1>
+              <p>
+                Optimize your game plan with key insights and populer builds
+                scouting.
+              </p>
+
+              <div
+                id="hiddenImage1"
+                className="img-0 mobile"
+                style={{ display: "block" }}>
+                <img src={item} alt={item} />
+              </div>
+            </div>
+            <div className="text-wrap">
+              <h1>
+                Review <span style={{ color: "#ae3335" }}>Summoner</span> Runes
+                & Masteries
+              </h1>
+              <p>
+                Plan and test out different summoner spells for your league
+                champions by checking the spells out.
+              </p>
+              <div
+                id="hiddenImage2"
+                className="img-0 mobile"
+                style={{ display: "block" }}>
+                <img src={runes} alt={runes} />
+              </div>
+            </div>
+            <div className="text-wrap">
+              <h1>
+                Check our your favorite{" "}
+                <span style={{ color: "#ae3335" }}>Champions</span> Lores
+              </h1>
+              <p>
+                Learn more about your favorite champions and their lore. Check
+                out their skills and abilities.
+              </p>
+              <div
+                id="hiddenImage3"
+                className="img-0 mobile"
+                style={{ display: "block" }}>
+                <img src={lores} alt={lores} />
+              </div>
+            </div>
+          </div>
+          <div className="right-col">
+            <div
+              id="hiddenImage1"
+              className="img-0"
+              style={{ display: "block" }}>
+              <img src={item} alt={item} />
+            </div>
+            <div
+              id="hiddenImage2"
+              className="img-0"
+              style={{ display: "block" }}>
+              <img src={runes} alt={runes} />
+            </div>
+            <div
+              id="hiddenImage3"
+              className="img-0"
+              style={{ display: "block" }}>
+              <img src={lores} alt={lores} />
+            </div>
+          </div>
+        </div>
       </section>
     </>
   );
