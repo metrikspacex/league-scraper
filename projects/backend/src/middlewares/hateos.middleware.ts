@@ -1,18 +1,19 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import type { NextFunction, Request, Response, Router } from "express";
 
 import { ServerConfigs } from "@/configs";
 
+// TODO: Refactor this middleware to use new routes prop on ServerConfigs
 const hateos = async (
   _request: Request,
   _response: Response,
   _next: NextFunction
 ): Promise<void> => {
-  const { protocol, hostname, port } = ServerConfigs.get();
+  const { hostname, protocol, port } = ServerConfigs.get();
   const routeMap = ServerConfigs.get().routes;
   const routes = Object.values(routeMap);
-
-  const generateLinks = (routes: Router[]) => {
+  const generateLinks = (routes: (Router | undefined)[]) => {
     const links: Record<string, any> = {
       _self: {
         href: `${protocol}://${hostname}:${port}${_request.path}`,
@@ -20,7 +21,7 @@ const hateos = async (
     };
 
     for (const [_index, route] of routes.entries()) {
-      const { stack } = route;
+      const { stack } = route!;
 
       for (const layer of stack) {
         const _path = layer.route.path as string;

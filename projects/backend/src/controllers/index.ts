@@ -7,6 +7,7 @@ export * from "./item.controller";
 export * from "./language.controller";
 export * from "./management.controller";
 export * from "./mastery.controller";
+export * from "./public.controller.ts";
 export * from "./region.controller";
 export * from "./root.controller";
 export * from "./rune.controller";

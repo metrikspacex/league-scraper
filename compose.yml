@@ -29,13 +29,13 @@ services:
   database:
     container_name: database
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    image: postgres:latest
+      - MONGO_INITDB_ROOT_PASSWORD=root 
+      - MONGO_INITDB_ROOT_USERNAME=root
+    image: mongo:latest
     ports:
-      - 5432:5432
+      - 27017:27017
     volumes:
-      - database:/var/lib/postgresql/data
+      - mongodata:/data/db
   frontend:
     build:
       context: ./projects/frontend/
@@ -54,5 +54,5 @@ version: "3.8"
 volumes:
   backend:
   cypress:
-  database:
   frontend:
+  mongodata:

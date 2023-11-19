@@ -6,6 +6,7 @@ export * from "./item.route";
 export * from "./language.route";
 export * from "./management.route";
 export * from "./mastery.route";
+export * from "./public.route";
 export * from "./region.route";
 export * from "./root.route";
 export * from "./rune.route";
