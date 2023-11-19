@@ -1,4 +1,5 @@
 import bodyParser from "body-parser";
+import compression from "compression";
 import express from "express";
 
 import { ServerConfigs } from "@/configs";
@@ -14,6 +15,7 @@ class Server {
     this.loadConfigurations();
     this.loadMiddlewares();
     this.loadRoutes();
+    this.loadDatabase();
     this.application.listen(
       this.application.get("port"),
       this.application.get("hostname"),
@@ -36,6 +38,10 @@ class Server {
     this.application.set("hostname", hostname);
     this.application.set("port", port);
     this.application.set("view engine", "hbs");
+    this.application.set("views", pathFrom("./views/", import.meta.url));
+  }
+  private loadDatabase(): void {
+    //
   }
   private loadMiddlewares(): void {
     Logger.get().log("#3BB143", "Server", "Loading middlewares");
@@ -45,6 +51,7 @@ class Server {
     this.application.use(
       bodyParser.urlencoded({ extended: true, limit: "50mb" })
     );
+    this.application.use(compression);
 
     this.application.use(
       "/static",

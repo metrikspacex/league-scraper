@@ -1,5 +1,6 @@
 import chalk from "chalk";
 
+// TODO -> debug / winson
 class Logger {
   private static instance: Logger | null = null;
   private constructor() {

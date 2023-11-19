@@ -71,10 +71,15 @@ const hateos = async (
       }
     });
   }
+
   _request.hateos = {
     _links,
   };
+
+  _response.on("finish", () => {
+    console.log(_response);
+  });
+
   _next();
 };
-
 export { hateos };

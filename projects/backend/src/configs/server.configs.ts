@@ -51,7 +51,7 @@ class ServerConfigs {
       path: `${pathFrom(
         "../../environments/",
         import.meta.url
-      )}/.env.production`,
+      )}/.env.development.local`,
     });
 
     // Set Server Configs
@@ -165,27 +165,64 @@ class ServerConfigs {
   public get routes(): Routes {
     return ServerConfigs._routes;
   }
+
+  /**
+   * @access private
+   * @description Set the routes of the server
+   */
   private set routes(value: Routes) {
     ServerConfigs._routes = value;
   }
+
+  /**
+   * @access public
+   * @description Get the port of the server
+   * @example 3000
+   */
   public get port(): Port {
     return ServerConfigs._port;
   }
+
+  /**
+   * @access private
+   * @description Set the port of the server
+   */
   private set port(value: Port) {
     ServerConfigs._port = value;
   }
+
+  /**
+   * @access public
+   * @description Get the protocol of the server
+   * @example "http" | "https"
+   */
   public get protocol(): Protocol {
     return ServerConfigs._protocol;
   }
+
+  /**
+   * @access private
+   * @description Set the protocol of the server
+   */
   private set protocol(value: Protocol) {
     ServerConfigs._protocol = value;
   }
+
+  /**
+   * @access public
+   * @description Get the version of the server
+   * @example "v1" | "v2"
+   */
   public get version(): Version {
     return ServerConfigs._version;
   }
+
+  /**
+   * @access private
+   * @description Set the version of the server
+   */
   private set version(value: Version) {
     ServerConfigs._version = value;
   }
 }
-
 export { ServerConfigs };

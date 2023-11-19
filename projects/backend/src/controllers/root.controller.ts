@@ -1,19 +1,19 @@
 import type { NextFunction, Request, Response } from "express";
 
+// TODO: Make a homepage defining routes and their usage
 class RootController {
   public async index(
     _request: Request,
     _response: Response,
     _next: NextFunction
   ): Promise<void> {
-    const a = "string";
-
-    _response.status(200).json({
-      response: {},
-      ..._request.hateos,
-    });
-    console.log("called?");
-    _next(() => {});
+    _response
+      .json({
+        response: {},
+        ..._request.hateos,
+      })
+      .status(200);
+    _next();
   }
 }
 export { RootController };

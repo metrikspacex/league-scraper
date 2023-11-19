@@ -7,5 +7,4 @@ const database = async (
 ): Promise<void> => {
   _next();
 };
-
 export { database };

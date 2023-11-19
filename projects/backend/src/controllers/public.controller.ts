@@ -1,5 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 
+// TODO: Lock down access to this controller.
 class PublicController {
   public async access(
     _request: Request,

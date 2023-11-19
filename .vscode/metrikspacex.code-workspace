@@ -480,7 +480,7 @@
       "**/.gitkeep": true,
       "**/compose.yml": true,
       "**/node_modules": true,
-      "**/package.json": true,
+      "**/package.json": false,
       "**/tsconfig*": true,
       "*markdownlint*": true,
       "*prettier*": true,
