@@ -87,7 +87,8 @@ export default defineConfig(({ mode }) => {
       proxy: {
         "/api": {
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/v, ""),
+          // TODO: Fix this
+          //rewrite: (path) => path.replace(/^\/api/v, ""),
           target: LEAGUE_SCRAPER_API,
         },
       },

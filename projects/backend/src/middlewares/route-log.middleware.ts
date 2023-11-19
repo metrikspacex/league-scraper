@@ -8,7 +8,6 @@ const routeLog = async (
   _response: Response,
   _next: NextFunction
 ): Promise<void> => {
-  console.log(_request.hateos);
   Logger.get().log("#FFA500", "Routes", `${_request.method} ${_request.path}`);
   _next();
 };

@@ -4,5 +4,5 @@ import { RootController } from "@/controllers";
 
 const router = Router();
 const controller = new RootController();
-router.get("/", controller.index);
+router.get("/api/v1/", controller.index);
 export { router as rootRoutes };

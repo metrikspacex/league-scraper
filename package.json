@@ -22,7 +22,7 @@
     "build:frontend": "pnpm --filter frontend build",
     "clean": "pnpm clean:dist && pnpm clean:node_modules",
     "clean:dist": "find . -name 'dist' -type d -prune -print -exec rimraf '{}' ;",
-    "clean:node_modules": "find . -name 'node_modules' -type d -prune -print -exec rimraf '{}' ;",
+    "clean:node_modules": "find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' ;",
     "dev": "concurrently \"pnpm dev:backend\" \"pnpm dev:frontend\"",
     "dev:backend": "pnpm --filter backend dev",
     "dev:cypress": "pnpm --filter cypress dev",

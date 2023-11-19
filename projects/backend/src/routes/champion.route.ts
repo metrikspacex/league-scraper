@@ -4,5 +4,5 @@ import { ChampionController } from "@/controllers";
 
 const router = Router();
 const controller = new ChampionController();
-router.get("/champion", controller.index);
+router.get("/api/v1/champion", controller.index);
 export { router as championRoutes };

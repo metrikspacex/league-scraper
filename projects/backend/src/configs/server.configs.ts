@@ -21,7 +21,7 @@ import { pathFrom } from "@/utilities";
 // TODO: possible make a dotenv replica -> array of strings
 class ServerConfigs {
   private static _allRoutes: Routes = {
-    "/api/v1/": rootRoutes,
+    "/api/v1": rootRoutes,
     "/api/v1/account": accountRoutes,
     "/api/v1/asset": assetRoutes,
     "/api/v1/challenge": challengeRoutes,
@@ -65,7 +65,6 @@ class ServerConfigs {
 
     // Set Routes
     ServerConfigs.setRoutes();
-    // console.log(ServerConfigs._routes);
   }
 
   /**
@@ -93,6 +92,7 @@ class ServerConfigs {
         .replaceAll("  ", "")
         .split(",\n")
         .map((route) => {
+          if (route === "/") return `${_base}/${_version}`;
           return `${_base}/${_version}/${route.slice(1)}`;
         })
     );
@@ -115,7 +115,7 @@ class ServerConfigs {
    * @description Set the base route of the server
    * @access private
    */
-  private set base(value: string) {
+  private set base(value: Base) {
     ServerConfigs._base = value;
   }
 

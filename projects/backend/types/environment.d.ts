@@ -40,13 +40,7 @@ declare global {
     interface Application {}
     interface Locals {}
     interface Request {
-      hateos: Record<
-        string,
-        {
-          href?: string;
-          methods?: any;
-        }
-      >;
+      hateos: any;
     }
     interface Response {}
   }

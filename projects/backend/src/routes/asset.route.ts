@@ -4,5 +4,5 @@ import { AssetController } from "@/controllers";
 
 const router = Router();
 const controller = new AssetController();
-router.get("/asset", controller.index);
+router.get("/api/v1/asset", controller.index);
 export { router as assetRoutes };

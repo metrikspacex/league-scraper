@@ -6,11 +6,14 @@ class RootController {
     _response: Response,
     _next: NextFunction
   ): Promise<void> {
+    const a = "string";
+
     _response.status(200).json({
       response: {},
       ..._request.hateos,
     });
-    _next();
+    console.log("called?");
+    _next(() => {});
   }
 }
 export { RootController };

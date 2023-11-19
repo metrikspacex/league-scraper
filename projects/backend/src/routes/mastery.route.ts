@@ -4,5 +4,5 @@ import { MasteryController } from "@/controllers";
 
 const router = Router();
 const controller = new MasteryController();
-router.get("/mastery", controller.index);
+router.get("/api/v1/mastery", controller.index);
 export { router as masteryRoutes };

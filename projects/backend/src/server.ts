@@ -2,12 +2,11 @@ import bodyParser from "body-parser";
 import express from "express";
 
 import { ServerConfigs } from "@/configs";
-import { hateos, routeLog } from "@/middlewares";
+import { hateos, redirect, routeLog } from "@/middlewares";
 import { Logger, pathFrom } from "@/utilities";
 
 class Server {
-  private readonly application: express.Application;
-
+  private application!: express.Application;
   public constructor() {
     this.application = express();
   }
@@ -32,28 +31,35 @@ class Server {
   }
   private loadConfigurations(): void {
     Logger.get().log("#3BB143", "Server", "Loading configurations");
-    this.application.set("hostname", ServerConfigs.get().hostname);
-    this.application.set("port", ServerConfigs.get().port);
+    const { hostname, port } = ServerConfigs.get();
+
+    this.application.set("hostname", hostname);
+    this.application.set("port", port);
     this.application.set("view engine", "hbs");
   }
   private loadMiddlewares(): void {
     Logger.get().log("#3BB143", "Server", "Loading middlewares");
+    const { base, version } = ServerConfigs.get();
+
     this.application.use(bodyParser.json({ limit: "50mb" }));
     this.application.use(
       bodyParser.urlencoded({ extended: true, limit: "50mb" })
     );
+
     this.application.use(
       "/static",
       express.static(pathFrom("../public/", import.meta.url))
     );
-    this.application.use(hateos);
+
+    this.application.use(`${base}/${version}`, hateos);
+    this.application.use(redirect);
     this.application.use(routeLog);
   }
   private loadRoutes(): void {
     Logger.get().log("#3BB143", "Server", "Loading routes");
     const { routes } = ServerConfigs.get();
-    for (const [map, route] of Object.entries(routes)) {
-      if (route) this.application.use(map, route);
+    for (const [_map, route] of Object.entries(routes)) {
+      if (route) this.application.use(route);
     }
   }
 }
