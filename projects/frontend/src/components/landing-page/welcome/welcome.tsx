@@ -276,6 +276,29 @@ export default function Welcome() {
           </div>
         </div>
       </section>
+
+      <section className="riot-card-blog container">
+        <div className="card card1">
+          <div className="top-section"></div>
+          <div className="text-flow">
+            <h1>UPROAR TOURNAMENTS</h1>
+            <button className="btn">
+              <FontAwesomeIcon icon={faRightToBracket} />
+              Check Now
+            </button>
+          </div>
+        </div>
+        <div className="card card1">
+          <div className="top-section"></div>
+          <div className="text-flow">
+            <h1>UPROAR TOURNAMENTS</h1>
+            <button className="btn">
+              <FontAwesomeIcon icon={faRightToBracket} />
+              Check Now
+            </button>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
