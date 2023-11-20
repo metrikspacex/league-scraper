@@ -25,12 +25,12 @@ section.welcome {
       height: 15%;
     }
 
-    &::after {
+    &::before {
       content: "";
       display: block;
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, #1c1c1c 18%, #101010 100%);
+      background: linear-gradient(0deg, rgb(0 0 0 / 20), rgb(0 0 0 / 0.4));
       z-index: 0;
       opacity: 0.9;
     }
@@ -103,7 +103,7 @@ section.welcome {
   text-align: center;
 
   @media screen and (max-width: 1024px) {
-    margin-top: 180px;
+    margin-top: 80px;
   }
 
   &_container {
@@ -161,7 +161,7 @@ section.welcome {
   position: relative;
   cursor: pointer;
   @media screen and (max-width: 1024px) {
-    margin-top: 0;
+    margin-top: 80px;
   }
   .video-caption {
     z-index: 8;
@@ -204,7 +204,7 @@ section.welcome {
       position: absolute;
       height: 98.5%;
       inset: 0;
-      background: linear-gradient(to top, #1c1c1c 18%, #101010 100%);
+      background: linear-gradient(0deg, rgb(0 0 0 / 20), rgb(0 0 0 / 0.4));
       z-index: 0;
       opacity: 0.9;
       z-index: 3;
@@ -265,6 +265,9 @@ section.welcome {
 .riot-features {
   padding-top: 180px;
   text-align: center;
+  @media screen and (max-width: 1024px) {
+    padding-top: 80px;
+  }
   @media screen and (max-width: 450px) {
     padding: 50px 15px 0 15px;
   }
@@ -309,6 +312,11 @@ section.welcome {
   text-align: center;
   max-width: 1200px;
   margin: auto;
+  @media screen and (max-width: 1024px) {
+    & {
+      padding-top: 80px;
+    }
+  }
   h2 {
     margin-bottom: 50px;
   }
@@ -370,12 +378,13 @@ section.welcome {
         border-radius: 4px;
         display: none !important;
 
+        &:hover {
+          transform: translateY(-50px);
+        }
+
         @media screen and (max-width: 1024px) {
           display: block !important;
           margin-top: 30px;
-        }
-        &:hover {
-          animation: scaleImg 1s ease;
         }
 
         img {
@@ -420,7 +429,7 @@ section.welcome {
           display: none !important;
         }
         &:hover {
-          animation: scaleImg 1s ease;
+          animation: scaleImg 0.8654s ease;
         }
 
         img {
@@ -431,8 +440,11 @@ section.welcome {
             0% {
               transform: scale(1);
             }
+            50% {
+              transform: scale(1.065);
+            }
             100% {
-              transform: scale(1.03);
+              transform: scale(1);
             }
           }
         }
@@ -442,19 +454,31 @@ section.welcome {
 }
 
 .riot-card-blog {
-  padding: 180px 0;
+  padding-top: 180px;
   max-width: 1050px;
   justify-content: center;
   width: 100%;
   gap: 20px;
   display: flex;
   flex-wrap: wrap;
+  @media screen and (max-width: 1024px) {
+    & {
+      max-width: 100%;
+      padding-top: 80px;
+    }
+  }
   .card {
     height: 500px;
     width: 500px;
     border: solid 2px #101010;
     border-radius: 4px;
     position: relative;
+    @media screen and (max-width: 450px) {
+      & {
+        height: 400px;
+        width: 400px;
+      }
+    }
     &.card1 {
       .top-section {
         height: 100%;
@@ -472,36 +496,54 @@ section.welcome {
           opacity: 0.6;
         }
       }
+    }
 
-      .text-flow {
-        position: absolute;
-        inset: 0;
-        z-index: 100;
+    &.card2 {
+      .top-section {
+        height: 100%;
+        width: 100%;
+        background: url("../../../assets/card-2-img.jpg") no-repeat center
+          center;
+        background-size: cover;
+        position: relative;
+        z-index: 6;
+        &::after {
+          position: absolute;
+          inset: 0;
+          content: "";
+          background: #c7ad56;
+          opacity: 0.6;
+        }
+      }
+    }
+    .text-flow {
+      position: absolute;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      & h1 {
+        font-size: 3rem;
+      }
+
+      & .btn {
+        margin-top: 30px;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: space-evenly;
+        text-transform: uppercase;
+        padding: 8px 10px;
+        width: 140px;
         text-align: center;
-        & h1 {
-          font-size: 3rem;
-        }
-
-        & .btn {
-          margin-top: 30px;
-          display: flex;
-          align-items: center;
-          justify-content: space-evenly;
-          text-transform: uppercase;
-          padding: 8px 10px;
-          width: 140px;
-          text-align: center;
-          border-radius: 8px;
-          font-weight: 500;
-          outline: none;
-          border: none;
-          color: #fff;
-          background: #ae3335;
-        }
+        border-radius: 8px;
+        font-weight: 500;
+        outline: none;
+        border: none;
+        color: #fff;
+        background: #ae3335;
       }
     }
   }

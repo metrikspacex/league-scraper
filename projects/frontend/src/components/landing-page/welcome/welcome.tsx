@@ -288,10 +288,12 @@ export default function Welcome() {
             </button>
           </div>
         </div>
-        <div className="card card1">
+        <div className="card card2">
           <div className="top-section"></div>
           <div className="text-flow">
-            <h1>UPROAR TOURNAMENTS</h1>
+            <h1>
+              Be One <br></br>of the Greats
+            </h1>
             <button className="btn">
               <FontAwesomeIcon icon={faRightToBracket} />
               Check Now
