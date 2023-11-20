@@ -11,13 +11,17 @@ const routeLog = async (
     const time = new Date();
     return time.toLocaleTimeString();
   };
-  _response.on("finish", () => {
+
+  _response.on("close", () => {
+    const bytes = Buffer.from(JSON.stringify(_request.body)).length;
     Logger.get().log(
       "#FFA500",
       "Routes",
-      `${time()} - ${_request.method} - ${_request.path} - ${
-        _response.statusCode
-      }`
+      `${time()} - ${_request.method} - Response:[${(
+        _response._contentLength / 1000
+      ).toFixed(2)}KB] / Request:[${(bytes / 1000).toFixed(2)}KB] - ${
+        _request.path
+      } - ${_response.statusCode}`
     );
   });
 

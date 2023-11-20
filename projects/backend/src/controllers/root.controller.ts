@@ -9,8 +9,21 @@ class RootController {
   ): Promise<void> {
     _response
       .json({
-        response: {},
+        data: {},
         ..._request.hateos,
+      })
+      .status(200);
+    _next();
+  }
+  public async incoming(
+    _request: Request,
+    _response: Response,
+    _next: NextFunction
+  ): Promise<void> {
+    console.log(_request.body);
+    _response
+      .json({
+        data: {},
       })
       .status(200);
     _next();

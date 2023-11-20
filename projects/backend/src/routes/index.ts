@@ -1,6 +1,7 @@
 export * from "./account.route";
 export * from "./asset.route";
 export * from "./challenge.route";
+export * from "./champion.route";
 export * from "./health.route";
 export * from "./item.route";
 export * from "./language.route";

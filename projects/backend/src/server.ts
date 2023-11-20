@@ -1,21 +1,28 @@
-import bodyParser from "body-parser";
-import compression from "compression";
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+import type { Application } from "express";
 import express from "express";
 
 import { ServerConfigs } from "@/configs";
-import { hateos, redirect, routeLog } from "@/middlewares";
+import {
+  compress,
+  hateos,
+  parse,
+  redirect,
+  routeLog,
+  serve,
+} from "@/middlewares";
 import { Logger, pathFrom } from "@/utilities";
 
 class Server {
-  private application!: express.Application;
+  private application!: Application;
   public constructor() {
     this.application = express();
   }
   public start(callback?: () => void): void {
     this.loadConfigurations();
+    this.loadDatabase();
     this.loadMiddlewares();
     this.loadRoutes();
-    this.loadDatabase();
     this.application.listen(
       this.application.get("port"),
       this.application.get("hostname"),
@@ -40,26 +47,20 @@ class Server {
     this.application.set("view engine", "hbs");
     this.application.set("views", pathFrom("./views/", import.meta.url));
   }
-  private loadDatabase(): void {
-    //
+  private async loadDatabase(): Promise<void> {
+    Logger.get().log("#3BB143", "Server", "Loading database");
   }
   private loadMiddlewares(): void {
     Logger.get().log("#3BB143", "Server", "Loading middlewares");
-    const { base, version } = ServerConfigs.get();
+    const { compressLevel, compressMemLevel, parseLimit, servePath } =
+      ServerConfigs.get();
 
-    this.application.use(bodyParser.json({ limit: "50mb" }));
-    this.application.use(
-      bodyParser.urlencoded({ extended: true, limit: "50mb" })
-    );
-    this.application.use(compression);
+    parse(this.application, parseLimit);
+    compress(this.application, compressLevel, compressMemLevel);
+    serve(this.application, servePath);
 
-    this.application.use(
-      "/static",
-      express.static(pathFrom("../public/", import.meta.url))
-    );
-
-    this.application.use(`${base}/${version}`, hateos);
     this.application.use(redirect);
+    this.application.use(hateos);
     this.application.use(routeLog);
   }
   private loadRoutes(): void {
@@ -70,4 +71,5 @@ class Server {
     }
   }
 }
-export default new Server().start();
+const server = new Server();
+server.start();

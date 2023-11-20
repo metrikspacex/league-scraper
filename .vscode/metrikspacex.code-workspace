@@ -77,7 +77,7 @@
   ],
   "launch": {
     "configurations": [
-      // Isolated backend dev server
+      // Debug
       {
         "args": [
           "--tsconfig=${workspaceFolder}/projects/backend/tsconfig.json",
@@ -85,7 +85,7 @@
           "${workspaceFolder}/projects/backend/src/server.ts"
         ],
         "console": "internalConsole",
-        "name": "backend:dev:isolated",
+        "name": "debug",
         "outputCapture": "console",
         "request": "launch",
         "runtimeArgs": ["tsx"],
@@ -505,7 +505,7 @@
       "**/.gitkeep": true,
       "**/compose.yml": true,
       "**/node_modules": true,
-      "**/package.json": false,
+      "**/package.json": true,
       "**/tsconfig*": true,
       "*markdownlint*": true,
       "*prettier*": true,
