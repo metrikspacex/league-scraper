@@ -301,6 +301,8 @@ export default function Welcome() {
           </div>
         </div>
       </section>
+
+      <div className="riot-testimonials"></div>
     </>
   );
 }
