@@ -1,13 +1,35 @@
-import { Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 
-import { RoleModel } from ".";
-
-const AccountSchema = new Schema({
-  createdAt: Date,
-  email: String,
-  name: String,
-  password: String,
-  role: RoleModel,
-  updatedAt: Date,
-});
-export { AccountSchema };
+const AccountSchema = new Schema(
+  {
+    email: {
+      required: true,
+      type: String,
+      unique: true,
+    },
+    password: {
+      required: true,
+      type: String,
+      unique: false,
+    },
+    username: {
+      required: true,
+      type: String,
+      unique: true,
+    },
+  },
+  {
+    methods: {},
+    query: {
+      byEmail(email: string) {
+        return this.where({ email });
+      },
+      byUsername(username: string) {
+        return this.where({ username });
+      },
+    },
+    statics: {},
+  }
+);
+const AccountModel = model("Account", AccountSchema);
+export { AccountModel };

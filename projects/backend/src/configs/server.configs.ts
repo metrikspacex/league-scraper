@@ -19,11 +19,6 @@ import {
 } from "@/routes";
 import { pathFrom } from "@/utilities";
 
-const a: Routes = {
-  "/api/v1": rootRoutes,
-};
-console.log(a);
-
 class ServerConfigs {
   private static instance: ServerConfigs | null = null;
   private static _allRoutes: Routes = {
@@ -51,16 +46,16 @@ class ServerConfigs {
   private static _databaseURL: DatabaseURL;
   private static _databaseUser: DatabaseUser;
   private static _environment: Environment;
-  private static _hateoas: Hateoas;
+  private static _hateoasOn: HateoasOn;
   private static _hateoasPath: HateoasPath;
   private static _hostname: Hostname;
   private static _parseLimit: ParseLimit;
   private static _port: Port;
   private static _protocol: Protocol;
-  private static _routeLog: RouteLog;
+  private static _routeLogOn: RouteLogOn;
   private static _routeLogPath: RouteLogPath;
   private static _routes: Routes;
-  private static _serve: Serve;
+  private static _serveOn: ServeOn;
   private static _servePath: ServePath;
   private static _version: Version;
   private constructor() {
@@ -84,14 +79,14 @@ class ServerConfigs {
     ServerConfigs._databaseURL = String(process.env.databaseURL) as DatabaseURL;
     ServerConfigs._databaseUser = String(process.env.databaseUser);
     ServerConfigs._environment = String(process.env.environment) as Environment;
-    ServerConfigs._hateoas = Boolean(process.env.hateoas);
+    ServerConfigs._hateoasOn = Boolean(process.env.hateoas);
     ServerConfigs._hostname = String(process.env.hostname);
     ServerConfigs._parseLimit = String(process.env.parseLimit) as ParseLimit;
     ServerConfigs._port = Number(process.env.port);
     ServerConfigs._protocol = String(process.env.protocol) as Protocol;
-    ServerConfigs._routeLog = Boolean(process.env.routeLog);
+    ServerConfigs._routeLogOn = Boolean(process.env.routeLog);
     ServerConfigs._routes = {};
-    ServerConfigs._serve = Boolean(process.env.serve);
+    ServerConfigs._serveOn = Boolean(process.env.serve);
     ServerConfigs._servePath = String(process.env.servePath) as ServePath;
     ServerConfigs._version = process.env.version;
 
@@ -284,16 +279,16 @@ class ServerConfigs {
    * @description Get the hateoas of the server
    * @example true | false
    */
-  public get hateoas(): Hateoas {
-    return ServerConfigs._hateoas;
+  public get hateoasOn(): HateoasOn {
+    return ServerConfigs._hateoasOn;
   }
 
   /**
    * @access private
    * @description Set the hateoas of the server
    */
-  private set hateoas(value: Hateoas) {
-    ServerConfigs._hateoas = value;
+  private set hateoasOn(value: HateoasOn) {
+    ServerConfigs._hateoasOn = value;
   }
 
   /**
@@ -386,16 +381,16 @@ class ServerConfigs {
    * @description Get the route log of the server
    * @example true | false
    */
-  public get routeLog(): RouteLog {
-    return ServerConfigs._routeLog;
+  public get routeLogOn(): RouteLogOn {
+    return ServerConfigs._routeLogOn;
   }
 
   /**
    * @access private
    * @description Set the route log of the server
    */
-  private set routeLog(value: RouteLog) {
-    ServerConfigs._routeLog = value;
+  private set routeLogOn(value: RouteLogOn) {
+    ServerConfigs._routeLogOn = value;
   }
 
   /**
@@ -437,16 +432,16 @@ class ServerConfigs {
    * @description Get the static path of the server
    * @example "/public"
    */
-  public get serve(): Serve {
-    return ServerConfigs._serve;
+  public get serveOn(): ServeOn {
+    return ServerConfigs._serveOn;
   }
 
   /**
    * @access private
    * @description Set the static path of the server
    */
-  private set serve(value: Serve) {
-    ServerConfigs._serve = value;
+  private set serveOn(value: ServeOn) {
+    ServerConfigs._serveOn = value;
   }
 
   /**

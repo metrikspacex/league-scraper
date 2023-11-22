@@ -1,11 +1,14 @@
-import type { NextFunction, Request, Response } from "express";
+import type { Application, NextFunction, Request, Response } from "express";
 
-// TODO: anything like /api/v1/hi isn't redirected
-const redirect = async (
-  _request: Request,
-  _response: Response,
-  _next: NextFunction
-): Promise<void> => {
-  _next();
+const redirect = async (application: Application): Promise<void> => {
+  application.use(
+    (_request: Request, _response: Response, _next: NextFunction) => {
+      if (_request.url.includes("/api/v1")) {
+        _next();
+      } else {
+        _response.redirect("/api/v1");
+      }
+    }
+  );
 };
 export { redirect };

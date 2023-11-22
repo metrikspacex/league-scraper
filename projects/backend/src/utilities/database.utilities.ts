@@ -1,18 +1,13 @@
+import type { Connection } from "mongoose";
 import mongoose from "mongoose";
 
 import { ServerConfigs } from "@/configs";
+import { Logger } from "@/utilities";
 
 class Database {
-  private static _databaseConnection: Promise<typeof mongoose>;
   private static instance: Database | null = null;
-  private constructor() {
-    const { databasePass, databaseURL, databaseUser } = ServerConfigs.get();
-
-    Database._databaseConnection = mongoose.connect(databaseURL, {
-      pass: databasePass,
-      user: databaseUser,
-    });
-  }
+  private static _connection: Connection;
+  private constructor() {}
 
   /**
    * @access public
@@ -25,30 +20,51 @@ class Database {
     return Database.instance;
   }
 
-  /**
-   * @access public
-   * @description Connect to the database
-   */
-  public async connect(): Promise<typeof mongoose> {
-    return Database.get()
-      .databaseConnection.then((connection) => {
-        return connection;
-      })
-      .catch((error) => {
-        throw new Error(error);
+  public async initialize(): Promise<void> {
+    const { databasePass, databaseURL, databaseUser } = ServerConfigs.get();
+
+    try {
+      const connect = await mongoose.connect(databaseURL, {
+        dbName: "api",
+        pass: databasePass,
+        user: databaseUser,
       });
+      Logger.get().log("#3BB143", "Database", "Connected successfully");
+      Logger.get().log("#3BB143", "Database", "Clearing");
+      connect.connection.db.dropDatabase({
+        dbName: "api",
+      });
+      const connection = connect.connection.useDb("api");
+      Database._connection = connection;
+    } catch (error: any) {
+      if (error instanceof mongoose.Error) {
+        Logger.get().log("#3BB143", "Database", "Connection failed");
+        throw new Error(`Database connection failed ${error.message}`);
+      }
+
+      Logger.get().log(
+        "#3BB143",
+        "Database",
+        "Connection failed, unknown error"
+      );
+      throw new Error("Database connection failed", error);
+    }
   }
 
   /**
    * @access public
    * @description Get the connection to the database
-   * @example "mongodb://localhost:27017"
    */
-  private get databaseConnection(): Promise<typeof mongoose> {
-    return Database._databaseConnection;
+  public get connection(): Connection {
+    return Database._connection;
   }
-  private set databaseConnection(value) {
-    Database._databaseConnection = value;
+
+  /**
+   * @access public
+   * @description Set the connection to the database
+   */
+  private set connection(value) {
+    Database._connection = value;
   }
 }
 

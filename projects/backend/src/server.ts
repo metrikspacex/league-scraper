@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
+/* eslint-disable eqeqeq */
 import type { Application } from "express";
 import express from "express";
 
@@ -11,18 +11,19 @@ import {
   routeLog,
   serve,
 } from "@/middlewares";
-import { Logger, pathFrom } from "@/utilities";
+import { AccountModel } from "@/models";
+import { Database, Logger, pathFrom } from "@/utilities";
 
 class Server {
   private application!: Application;
   public constructor() {
     this.application = express();
   }
-  public start(callback?: () => void): void {
-    this.loadConfigurations();
-    this.loadDatabase();
-    this.loadMiddlewares();
-    this.loadRoutes();
+  public async start(callback?: () => void): Promise<void> {
+    await this.loadConfigurations();
+    await this.initializeDatabase();
+    await this.loadMiddlewares();
+    await this.loadRoutes();
     this.application.listen(
       this.application.get("port"),
       this.application.get("hostname"),
@@ -38,7 +39,7 @@ class Server {
       }
     );
   }
-  private loadConfigurations(): void {
+  private async loadConfigurations(): Promise<void> {
     Logger.get().log("#3BB143", "Server", "Loading configurations");
     const { hostname, port } = ServerConfigs.get();
 
@@ -47,23 +48,55 @@ class Server {
     this.application.set("view engine", "hbs");
     this.application.set("views", pathFrom("./views/", import.meta.url));
   }
-  private async loadDatabase(): Promise<void> {
-    Logger.get().log("#3BB143", "Server", "Loading database");
+  private async initializeDatabase(): Promise<void> {
+    Logger.get().log("#3BB143", "Server", "Initializing database");
+    const { databaseUser, databasePass } = ServerConfigs.get();
+
+    const db = Database.get();
+    await db.initialize().finally(async () => {
+      Logger.get().log("#3BB143", "Database", "Creating account");
+
+      const _id = AccountModel.exists({
+        where: {
+          email: `${databaseUser}@gmail.com`,
+          password: `${databasePass}`,
+          username: `${databaseUser}`,
+        },
+      });
+      if (_id === null) {
+        AccountModel.create({
+          email: `${databaseUser}@gmail.com`,
+          password: `${databasePass}`,
+          username: `${databaseUser}`,
+        });
+      }
+    });
   }
-  private loadMiddlewares(): void {
+  private async loadMiddlewares(): Promise<void> {
     Logger.get().log("#3BB143", "Server", "Loading middlewares");
-    const { compressLevel, compressMemLevel, parseLimit, servePath } =
-      ServerConfigs.get();
+    const {
+      compressLevel,
+      compressMemLevel,
+      hateoasOn,
+      // @ts-expect-error
+      hateoasPath,
+      parseLimit,
+      routeLogOn,
+      // @ts-expect-error
+      routeLogPath,
+      serveOn,
+      servePath,
+    } = ServerConfigs.get();
 
     parse(this.application, parseLimit);
     compress(this.application, compressLevel, compressMemLevel);
-    serve(this.application, servePath);
+    redirect(this.application);
 
-    this.application.use(redirect);
-    this.application.use(hateos);
-    this.application.use(routeLog);
+    if (serveOn) serve(this.application, servePath);
+    if (hateoasOn) this.application.use(hateos);
+    if (routeLogOn) this.application.use(routeLog);
   }
-  private loadRoutes(): void {
+  private async loadRoutes(): Promise<void> {
     Logger.get().log("#3BB143", "Server", "Loading routes");
     const { routes } = ServerConfigs.get();
     for (const [_map, route] of Object.entries(routes)) {

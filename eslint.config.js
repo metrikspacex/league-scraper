@@ -183,6 +183,7 @@ const backendConfig = defineFlatConfig([
       "@typescript-eslint/restrict-template-expressions": ["off"],
       "@typescript-eslint/sort-type-constituents": ["off"],
       "@typescript-eslint/space-before-function-paren": ["off"],
+      "@typescript-eslint/strict-boolean-expressions": ["off"],
       "@typescript-eslint/unbound-method": ["off"],
       "accessor-pairs": ["error"],
       "array-callback-return": ["off"],

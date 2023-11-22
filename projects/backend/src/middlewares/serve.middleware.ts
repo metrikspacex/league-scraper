@@ -1,4 +1,4 @@
-import type { Application, NextFunction, Request, Response } from "express";
+import type { Application } from "express";
 import { static as _static } from "express";
 
 import { pathFrom } from "@/utilities";

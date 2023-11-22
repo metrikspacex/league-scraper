@@ -15,13 +15,13 @@ declare global {
     | "development.local"
     | "production"
     | "production.local";
-  type Hateoas = boolean;
+  type HateoasOn = boolean;
   type HateoasPath = "/" | "global" | RouteMap<Version>;
   type Hostname = "localhost" | string;
   type ParseLimit = `${number}mb` | `${number}kb`;
   type Port = number;
   type Protocol = "http" | "https";
-  type RouteLog = boolean;
+  type RouteLogOn = boolean;
   type RouteLogPath = "/" | "global" | RouteMap<Version>;
   type RouteMap<version extends Version> =
     | `/api/${version}`
@@ -42,7 +42,7 @@ declare global {
   type Routes = {
     [index in RouteMap<Version>]?: Router;
   };
-  type Serve = boolean;
+  type ServeOn = boolean;
   type ServePath = "global" | RouteMap<Version>;
   type Version = "v1" | "v2";
 
@@ -70,16 +70,16 @@ declare global {
       databaseURL: DatabaseURL;
       databaseUser: DatabaseUser;
       environment: Environment;
-      hateoas: Hateoas;
+      hateoas: HateoasOn;
       hateoasPath: HateoasPath;
       hostname: Hostname;
       parseLimit: ParseLimit;
       port: Port;
       protocol: Protocol;
-      routeLog: RouteLog;
+      routeLog: RouteLogOn;
       routeLogPath: RouteLogPath;
       routes: string;
-      serve: Serve;
+      serve: ServeOn;
       servePath: ServePath;
       version: Version;
     }

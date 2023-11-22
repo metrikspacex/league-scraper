@@ -40,7 +40,7 @@
     "preview:backend": "pnpm --filter backend lint",
     "preview:cypress": "pnpm --filter cypress lint",
     "preview:frontend": "pnpm --filter frontend lint",
-    "tsx": "tsx",
+    "tsx": "tsx --no-warnings",
     "update": "pnpm update --latest"
   },
   "devDependencies": {
