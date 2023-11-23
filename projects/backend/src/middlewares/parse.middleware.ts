@@ -3,9 +3,14 @@ import type { Application } from "express";
 
 const parse = async (
   application: Application,
-  limit: string
+  options: {
+    extended: boolean;
+    limit: ParseLimit;
+  }
 ): Promise<void> => {
+  const { extended, limit } = options;
+
   application.use(bodyParser.json({ limit }));
-  application.use(bodyParser.urlencoded({ extended: true, limit }));
+  application.use(bodyParser.urlencoded({ extended, limit }));
 };
 export { parse };

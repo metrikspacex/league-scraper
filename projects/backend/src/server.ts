@@ -75,26 +75,55 @@ class Server {
   private async loadMiddlewares(): Promise<void> {
     Logger.get().log("#3BB143", "Server", "Loading middlewares");
     const {
+      base,
       compressLevel,
       compressMemLevel,
       hateoasOn,
-      // @ts-expect-error
       hateoasPath,
       parseLimit,
       routeLogOn,
-      // @ts-expect-error
       routeLogPath,
       serveOn,
       servePath,
+      version,
     } = ServerConfigs.get();
 
-    parse(this.application, parseLimit);
-    compress(this.application, compressLevel, compressMemLevel);
-    redirect(this.application);
+    const parseOn = true;
+    const compressOn = true;
+    const redirectOn = true;
 
-    if (serveOn) serve(this.application, servePath);
-    if (hateoasOn) this.application.use(hateos);
-    if (routeLogOn) this.application.use(routeLog);
+    if (parseOn)
+      parse(this.application, {
+        extended: true,
+        limit: parseLimit,
+      });
+
+    if (compressOn)
+      compress(this.application, {
+        level: compressLevel,
+        memLevel: compressMemLevel,
+      });
+
+    if (serveOn)
+      serve(this.application, {
+        path: servePath,
+      });
+
+    if (redirectOn)
+      redirect(this.application, {
+        from: `${base}/${version}`,
+        to: `${base}/${version}`,
+      });
+
+    if (hateoasOn)
+      hateos(this.application, {
+        path: hateoasPath,
+      });
+
+    if (routeLogOn)
+      routeLog(this.application, {
+        path: routeLogPath,
+      });
   }
   private async loadRoutes(): Promise<void> {
     Logger.get().log("#3BB143", "Server", "Loading routes");

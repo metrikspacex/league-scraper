@@ -417,6 +417,8 @@ const backendConfig = defineFlatConfig([
       "unicorn/filename-case": ["off"],
       "unicorn/import-style": ["off"],
       "unicorn/no-abusive-eslint-disable": ["off"],
+      "unicorn/no-array-callback-reference": ["off"],
+      "unicorn/no-array-method-this-argument": ["off"],
       "unicorn/no-array-reduce": ["error"],
       "unicorn/no-empty-file": ["off"],
       "unicorn/no-keyword-prefix": ["off"],
