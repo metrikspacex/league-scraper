@@ -454,7 +454,7 @@ section.welcome {
 }
 
 .riot-card-blog {
-  padding-top: 180px;
+  padding: 180px 0;
   max-width: 1050px;
   justify-content: center;
   width: 100%;
@@ -545,6 +545,34 @@ section.welcome {
         color: #fff;
         background: #ae3335;
       }
+    }
+  }
+}
+
+.riot-testimonials {
+  text-align: center;
+  background: url("https://www.pngall.com/wp-content/uploads/2017/05/World-Map-PNG-Clipart.png")
+    no-repeat top center;
+  background-size: 50%;
+  height: 100vh;
+  .container {
+    .text-wrapper {
+      padding-bottom: 50px;
+      h2.heading2 {
+        margin-bottom: 30px;
+      }
+    }
+    .slick-dots {
+      display: none !important;
+    }
+    .slick-arrow.slick-next,
+    .slick-arrow.slick-prev {
+      left: 65px;
+      right: 65px;
+    }
+    .slick-arrow.slick-next::before,
+    .slick-arrow.slick-prev::before {
+      font-size: 1.85rem !important;
     }
   }
 }

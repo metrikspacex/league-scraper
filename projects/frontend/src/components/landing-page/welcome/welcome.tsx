@@ -1,4 +1,6 @@
 import "../welcome/welcome.scss";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import videoLeague from "@/assets/y2mate.com - League of Legends  4K Season 2020 Cinematic Warriors Trailer ft 2WEI and Edda Hayes_1080p.mp4";
 import leaguePlays from "@/assets/y2mate.com - Awaken  Season 2019 Cinematic  League of Legends ft Valerie Broussard_1080p.mp4";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,6 +16,7 @@ import {
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import Slider from "react-slick";
 
 export default function Welcome() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -27,6 +30,13 @@ export default function Welcome() {
     document.body.style.overflow = "auto";
   }
 
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <>
       <section className="welcome container">
@@ -302,7 +312,45 @@ export default function Welcome() {
         </div>
       </section>
 
-      <div className="riot-testimonials"></div>
+      <div className="riot-testimonials">
+        <div className="container">
+          <div className="text-wrapper">
+            <h2>
+              <span style={{ color: "#ae3335" }}> Riot Games </span> Players
+              Around the
+            </h2>
+            <h2 className="heading2">
+              World Love <span style={{ color: "#ae3335" }}> Riot Games </span>
+            </h2>
+            <p>
+              Mobalytics works for players of every role and region. Our
+              community is made of millions of Riot Games players from 182
+              countries.
+            </p>
+          </div>
+
+          <Slider {...settings}>
+            <div>
+              <h3>1</h3>
+            </div>
+            <div>
+              <h3>2</h3>
+            </div>
+            <div>
+              <h3>3</h3>
+            </div>
+            <div>
+              <h3>4</h3>
+            </div>
+            <div>
+              <h3>5</h3>
+            </div>
+            <div>
+              <h3>6</h3>
+            </div>
+          </Slider>
+        </div>
+      </div>
     </>
   );
 }
