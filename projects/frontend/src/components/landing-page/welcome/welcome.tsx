@@ -330,23 +330,110 @@ export default function Welcome() {
           </div>
 
           <Slider {...settings}>
-            <div>
-              <h3>1</h3>
+            <div className="box-testimonials">
+              <div className="img-wrapper">
+                <img
+                  src="https://cdnportal.mobalytics.gg/production/2021/06/18f3fc8a-hikamatsu-avatar.png"
+                  alt="hikamatsy-avatar.png"
+                />
+              </div>
+              <div className="box-card">
+                <div className="box-description">
+                  <p className="description">
+                    "I stumbled upon this League of Legends website and it has
+                    been a game-changer for me! The champion guides are
+                    incredibly detailed, helping me climb from Silver to Gold.
+                    The live streaming feature also lets me watch high-level
+                    gameplay and learn from the pros. It's become my go-to
+                    resource for all things League!"
+                  </p>
+                  <h4 className="username">Sarah K. (Gold IV Player)</h4>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3>2</h3>
+            <div className="box-testimonials">
+              <div className="img-wrapper">
+                <img
+                  src="https://cdnportal.mobalytics.gg/production/2021/06/18f3fc8a-hikamatsu-avatar.png"
+                  alt="hikamatsy-avatar.png"
+                />
+              </div>
+              <div className="box-card">
+                <div className="box-description">
+                  <p className="description">
+                    "I stumbled upon this League of Legends website and it has
+                    been a game-changer for me! The champion guides are
+                    incredibly detailed, helping me climb from Silver to Gold.
+                    The live streaming feature also lets me watch high-level
+                    gameplay and learn from the pros. It's become my go-to
+                    resource for all things League!"
+                  </p>
+                  <h4 className="username">Sarah K. (Gold IV Player)</h4>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3>3</h3>
+            <div className="box-testimonials">
+              <div className="img-wrapper">
+                <img
+                  src="https://cdnportal.mobalytics.gg/production/2021/06/18f3fc8a-hikamatsu-avatar.png"
+                  alt="hikamatsy-avatar.png"
+                />
+              </div>
+              <div className="box-card">
+                <div className="box-description">
+                  <p className="description">
+                    "I stumbled upon this League of Legends website and it has
+                    been a game-changer for me! The champion guides are
+                    incredibly detailed, helping me climb from Silver to Gold.
+                    The live streaming feature also lets me watch high-level
+                    gameplay and learn from the pros. It's become my go-to
+                    resource for all things League!"
+                  </p>
+                  <h4 className="username">Sarah K. (Gold IV Player)</h4>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3>4</h3>
+            <div className="box-testimonials">
+              <div className="img-wrapper">
+                <img
+                  src="https://cdnportal.mobalytics.gg/production/2021/06/18f3fc8a-hikamatsu-avatar.png"
+                  alt="hikamatsy-avatar.png"
+                />
+              </div>
+              <div className="box-card">
+                <div className="box-description">
+                  <p className="description">
+                    "I stumbled upon this League of Legends website and it has
+                    been a game-changer for me! The champion guides are
+                    incredibly detailed, helping me climb from Silver to Gold.
+                    The live streaming feature also lets me watch high-level
+                    gameplay and learn from the pros. It's become my go-to
+                    resource for all things League!"
+                  </p>
+                  <h4 className="username">Sarah K. (Gold IV Player)</h4>
+                </div>
+              </div>
             </div>
-            <div>
-              <h3>5</h3>
-            </div>
-            <div>
-              <h3>6</h3>
+            <div className="box-testimonials">
+              <div className="img-wrapper">
+                <img
+                  src="https://cdnportal.mobalytics.gg/production/2021/06/18f3fc8a-hikamatsu-avatar.png"
+                  alt="hikamatsy-avatar.png"
+                />
+              </div>
+              <div className="box-card">
+                <div className="box-description">
+                  <p className="description">
+                    "I stumbled upon this League of Legends website and it has
+                    been a game-changer for me! The champion guides are
+                    incredibly detailed, helping me climb from Silver to Gold.
+                    The live streaming feature also lets me watch high-level
+                    gameplay and learn from the pros. It's become my go-to
+                    resource for all things League!"
+                  </p>
+                  <h4 className="username">Sarah K. (Gold IV Player)</h4>
+                </div>
+              </div>
             </div>
           </Slider>
         </div>

@@ -557,7 +557,6 @@ section.welcome {
   height: 100vh;
   .container {
     .text-wrapper {
-      padding-bottom: 50px;
       h2.heading2 {
         margin-bottom: 30px;
       }
@@ -565,14 +564,50 @@ section.welcome {
     .slick-dots {
       display: none !important;
     }
-    .slick-arrow.slick-next,
-    .slick-arrow.slick-prev {
-      left: 65px;
-      right: 65px;
-    }
     .slick-arrow.slick-next::before,
     .slick-arrow.slick-prev::before {
-      font-size: 1.85rem !important;
+      font-size: 2.85rem !important;
+    }
+    .slick-slider.slick-initialized {
+      .box-testimonials {
+        .img-wrapper {
+          width: 90px;
+          height: 90px;
+          border-radius: 50%;
+          overflow: hidden;
+          position: relative;
+          margin: auto;
+          bottom: -30px;
+          z-index: 20;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .box-card {
+          display: flex !important;
+          flex-direction: column;
+          text-align: center;
+          align-items: center;
+          margin: auto;
+          width: 650px !important;
+          background-color: #ae3335;
+          padding: 20px;
+          border-radius: 8px;
+          position: relative;
+          .box-description {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+            .username {
+              font-weight: 400;
+              font-size: 1.5rem;
+              color: rgba(220, 220, 220, 0.915);
+            }
+          }
+        }
+      }
     }
   }
 }
