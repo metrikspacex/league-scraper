@@ -1,58 +1,14 @@
 services:
-  backend:
-    build:
-      context: ./projects/backend/
-      dockerfile: dockerfile
-    container_name: backend
-    depends_on:
-      - database
-    image: node:latest
-    ports:
-      - 3000:3000
-    volumes:
-      - backend:/opt/backend
-    working_dir: /opt/backend
-  cypress:
-    build:
-      context: ./projects/cypress/
-      dockerfile: dockerfile
-    container_name: cypress
-    depends_on:
-      - backend
-      - frontend
-    image: cypress/included:latest
-    ports:
-      - 4200:4200
-    volumes:  
-      - cypress:/opt/cypress
-    working_dir: /opt/cypress
   database:
     container_name: database
     environment:
-      - MONGO_INITDB_ROOT_PASSWORD=root 
-      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=somesecurepassword 
+      - MONGO_INITDB_ROOT_USERNAME=somesecureusername
     image: mongo:latest
     ports:
       - 27017:27017
     volumes:
       - mongodata:/data/db
-  frontend:
-    build:
-      context: ./projects/frontend/
-      dockerfile: dockerfile
-    container_name: frontend
-    depends_on:
-      - backend
-      - database
-    image: node:latest
-    ports:
-      - 5173:5173
-    volumes:
-      - frontend:/opt/frontend
-    working_dir: /opt/frontend
 version: "3.8"
 volumes:
-  backend:
-  cypress:
-  frontend:
   mongodata:

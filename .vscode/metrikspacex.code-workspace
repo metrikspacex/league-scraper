@@ -10,7 +10,6 @@
       "Gruntfuggly.todo-tree",
       "IBM.output-colorizer",
       "MS-vsliveshare.vsliveshare",
-      "Orta.vscode-jest",
       "Orta.vscode-twoslash-queries",
       "PKief.material-icon-theme",
       "PeterSchmalfeldt.explorer-exclude",
@@ -19,7 +18,6 @@
       "VisualStudioExptTeam.vscodeintellicode",
       "YRM.type-challenges",
       "ZainChen.json",
-      "ZixuanChen.vitest-explorer",
       "andrejunges.Handlebars",
       "bradlc.vscode-tailwindcss",
       "christian-kohler.npm-intellisense",
@@ -33,7 +31,6 @@
       "formulahendry.code-runner",
       "gaz77a.javascript-sort",
       "glenn2223.live-sass",
-      "hbenl.vscode-mocha-test-adapter",
       "hbenl.vscode-test-explorer",
       "idered.npm",
       "johnsoncodehk.vscode-tsconfig-helper",
@@ -67,58 +64,60 @@
       "vscjava.vscode-maven",
       "yoavbls.pretty-ts-errors"
     ],
-    "unwantedRecommendations": []
+    "unwantedRecommendations": [
+      "Orta.vscode-jest",
+      "ZixuanChen.vitest-explorer",
+      "hbenl.vscode-mocha-test-adapter"
+    ]
   },
   "folders": [
     {
-      "name": "LEAGUE-SCRAPER",
+      "name": "__ROOT__",
       "path": "../"
     }
   ],
   "launch": {
     "configurations": [
-      // Debug
+      // dev
       {
-        "args": [
-          "--tsconfig=${workspaceFolder}/projects/backend/tsconfig.json",
-          "--watch",
-          "${workspaceFolder}/projects/backend/src/server.ts"
-        ],
         "console": "internalConsole",
-        "name": "debug",
+        "name": "dev",
         "outputCapture": "console",
         "request": "launch",
-        "runtimeArgs": ["tsx"],
+        "runtimeArgs": ["dev:backend"],
         "runtimeExecutable": "pnpm",
         "skipFiles": ["<node_internals>/**"],
         "type": "node"
       },
-      // Backend Runtimes
+      // tsx
       {
         "args": [
-          "--tsconfig=${workspaceFolder}/projects/backend/tsconfig.json",
+          "--tsconfig=${workspaceFolder}/projects/backend/src/tsconfig.json",
           "--watch",
           "${file}"
         ],
+        "autoAttachChildProcesses": true,
         "console": "internalConsole",
-        "name": "backend:dev:tsx",
+        "name": "tsx",
         "outputCapture": "console",
         "request": "launch",
         "runtimeArgs": ["tsx"],
         "runtimeExecutable": "pnpm",
+        "showAsyncStacks": true,
         "skipFiles": ["<node_internals>/**"],
+        "smartStep": false,
         "type": "node"
       },
-      // Backend Runtimes
+      // vitest
       {
-        "args": ["--watch", "${file}"],
+        "args": ["run", "${relativeFile}"],
+        "autoAttachChildProcesses": true,
         "console": "internalConsole",
-        "name": "backend:dev:node",
-        "outputCapture": "console",
+        "name": "vitest",
+        "program": "${workspaceRoot}/node_modules/vitest/vitest.mjs",
         "request": "launch",
-        "runtimeArgs": ["node"],
-        "runtimeExecutable": "pnpm",
-        "skipFiles": ["<node_internals>/**"],
+        "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+        "smartStep": true,
         "type": "node"
       }
     ],
@@ -322,8 +321,6 @@
     "css.lint.vendorPrefix": "error",
     "css.lint.zeroUnits": "error",
     "css.validate": true,
-    // Debugger
-    "debug.toolBarLocation": "commandCenter",
     "debug.autoExpandLazyVariables": true,
     "debug.confirmOnExit": "always",
     "debug.console.collapseIdenticalLines": false,
@@ -332,6 +329,8 @@
     "debug.showInStatusBar": "always",
     "debug.showSubSessionsInToolBar": true,
     "debug.terminal.clearBeforeReusing": true,
+    // Debugger
+    "debug.toolBarLocation": "commandCenter",
     // Editor
     "editor.autoClosingBrackets": "languageDefined",
     "editor.autoClosingDelete": "auto",
@@ -383,6 +382,7 @@
     "editor.minimap.enabled": false,
     "editor.parameterHints.cycle": true,
     "editor.parameterHints.enabled": true,
+    "editor.peekWidgetDefaultFocus": "tree",
     "editor.quickSuggestions": {
       "comments": "off",
       "other": "off",
@@ -398,7 +398,8 @@
     "editor.semanticHighlighting.enabled": "configuredByTheme",
     "editor.showDeprecated": true,
     "editor.showUnused": true,
-    "editor.stickyScroll.enabled": true,
+    "editor.stickyScroll.defaultModel": "foldingProviderModel",
+    "editor.stickyScroll.enabled": false,
     "editor.suggest.filterGraceful": true,
     "editor.suggest.insertMode": "insert",
     "editor.suggest.localityBonus": true,
@@ -459,7 +460,7 @@
     "emmet.triggerExpansionOnTab": true,
     // Eslint
     "eslint.codeActionsOnSave.mode": "problems",
-    "eslint.debug": false,
+    "eslint.debug": true,
     "eslint.enable": true,
     "eslint.experimental.useFlatConfig": true,
     "eslint.format.enable": true,
@@ -500,48 +501,35 @@
       "**/CVS": true,
       "**/.DS_Store": true,
       "**/Thumbs.db": true,
-      "**/*docker*": true,
       "**/.gitkeep": true,
       "**/node_modules": true,
-      "**/package.json": false,
-      "**/tsconfig*": true,
+      "**/package-lock.json": true,
+      "**/package.json": true,
+      "**markdownlint*": true,
       "**prettier*": true,
       "**stylelint*": true,
-      "*.markdownlint*": true,
-      "*pnp*": true,
       ".github": true,
       ".gitignore": true,
       ".husky": true,
       ".npmrc": true,
       ".nvmrc": true,
       ".vscodeignore": true,
-      "backend": true,
-      "bin": true,
-      "compose.yml": true,
-      "cypress": true,
-      "environments": true,
+      "compose.yml": false,
       "eslint.config.js": false,
-      "frontend": true,
-      "lerna.json": true,
-      "tools": true,
-      "**/.eslintcache": true,
-      "**/compose.yml": true,
-      "*markdownlint*": true,
-      "*prettier*": true,
-      ".stylelint*": true,
-      "dist": true,
-      "ecosystem.config.cjs": true,
-      "package-lock.json": true,
       "pnpm-*": true,
       "projects/backend": false,
-      "projects/backend/environments": false,
+      "projects/backend/assets": true,
+      "projects/backend/environments": true,
       "projects/backend/public": true,
-      "projects/backend/src": false,
+      "projects/backend/src/tsconfig.json": true,
       "projects/backend/tests": true,
+      "projects/backend/tests/tsconfig.json": true,
+      "projects/backend/tsconfig.json": true,
       "projects/backend/tsup.config.ts": true,
-      "projects/backend/types": false,
+      "projects/backend/vitest.config.ts": true,
       "projects/cypress": true,
-      "projects/frontend": true
+      "projects/frontend": true,
+      "vitest.workspace.ts": true
     },
     // ___EXCLUDES___
     // Git
@@ -657,20 +645,34 @@
     "javascript.suggestionActions.enabled": false,
     "javascript.updateImportsOnFileMove.enabled": "never",
     "javascript.validate.enable": true,
-    // Jest
-    "jest.jestCommandLine": "pnpm test",
     // Json
     "json.format.enable": true,
     "json.format.keepLines": true,
+    "liveSassCompile.settings.autoprefix": "defaults",
+    "liveSassCompile.settings.compileOnWatch": true,
+    "liveSassCompile.settings.formats": [
+      {
+        "extensionName": ".css",
+        "format": "expanded",
+        "savePath": "/projects/backend/public/css",
+        "savePathReplacementPairs": null
+      }
+    ],
+    "liveSassCompile.settings.generateMap": false,
+    "liveSassCompile.settings.showOutputWindowOn": "None",
+    // SCSS Watch
+    "liveSassCompile.settings.watchOnLaunch": false,
     // Material Icon theme
     "material-icon-theme.files.associations": {
       ".markdownlint.json": "markdown",
       ".markdownlintignore": "markdown",
+      ".mocharc.cjs": "mocha",
       "ecosystem.config.cjs": "nodejs",
       "ecosystem.config.js": "nodejs",
       "tsconfig.cypress.json": "tsconfig",
       "tsconfig.json": "tsconfig",
-      "tsconfig.vite.json": "tsconfig"
+      "tsconfig.vite.json": "tsconfig",
+      "vitest.workspace.ts": "vitest"
     },
     // NPM
     "npm-intellisense.importDeclarationType": "const",
@@ -731,6 +733,7 @@
     "problems.defaultViewMode": "table",
     "problems.showCurrentInStatus": true,
     "problems.sortOrder": "severity",
+    "references.preferredLocation": "peek",
     // SCSS
     "scss.completion.completePropertyWithSemicolon": true,
     "scss.completion.triggerPropertyValueCompletion": true,
@@ -763,24 +766,26 @@
     "scss.lint.vendorPrefix": "error",
     "scss.lint.zeroUnits": "error",
     "scss.validate": true,
-    // SCSS Watch
-    "liveSassCompile.settings.watchOnLaunch": false,
-    "liveSassCompile.settings.compileOnWatch": true,
-    "liveSassCompile.settings.autoprefix": "defaults",
-    "liveSassCompile.settings.generateMap": false,
-    "liveSassCompile.settings.showOutputWindowOn": "None",
-    "liveSassCompile.settings.formats": [
-      {
-        "extensionName": ".css",
-        "format": "expanded",
-        "savePath": "/projects/backend/public/css",
-        "savePathReplacementPairs": null
-      }
-    ],
     // Stylelint
     "stylelint.enable": true,
     "stylelint.reportDescriptionlessDisables": false,
     "stylelint.validate": ["css", "scss", "less", "postcss", "scss", "sugarss"],
+    // Testing Explorer
+    "testExplorer.addToEditorContextMenu": true,
+    "testExplorer.codeLens": true,
+    "testExplorer.errorDecoration": true,
+    "testExplorer.errorDecorationHover": true,
+    "testExplorer.gutterDecoration": true,
+    "testExplorer.hideEmptyLog": true,
+    "testExplorer.hideWhen": "never",
+    "testExplorer.mergeSuites": false,
+    "testExplorer.onReload": null,
+    "testExplorer.onStart": null,
+    "testExplorer.showCollapseButton": true,
+    "testExplorer.showExpandButton": 3,
+    "testExplorer.showOnRun": true,
+    "testExplorer.sort": "byLabel",
+    "testExplorer.useNativeTesting": false,
     // Testing
     "testing.alwaysRevealTestOnStateChange": true,
     "testing.autoRun.delay": 10000,
@@ -839,6 +844,7 @@
       "enabled": true,
       "useCodeActionMenu": true
     },
+    "typescript.experimental.tsserver.web.typeAcquisition.enabled": true,
     "typescript.format.enable": true,
     "typescript.format.indentSwitchCase": true,
     "typescript.format.insertSpaceAfterCommaDelimiter": true,
@@ -877,8 +883,8 @@
     "typescript.preferences.quoteStyle": "double",
     "typescript.preferences.renameMatchingJsxTags": true,
     "typescript.preferences.useAliasesForRenames": true,
-    "typescript.referencesCodeLens.enabled": true,
-    "typescript.referencesCodeLens.showOnAllFunctions": true,
+    "typescript.referencesCodeLens.enabled": false,
+    "typescript.referencesCodeLens.showOnAllFunctions": false,
     "typescript.reportStyleChecksAsWarnings": true,
     "typescript.suggest.autoImports": false,
     "typescript.suggest.classMemberSnippets.enabled": false,
@@ -893,7 +899,7 @@
     "typescript.suggestionActions.enabled": true,
     "typescript.surveys.enabled": true,
     "typescript.tsc.autoDetect": "on",
-    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.tsdk": "__ROOT__/node_modules/typescript/lib",
     "typescript.tsserver.enableTracing": true,
     "typescript.tsserver.experimental.enableProjectDiagnostics": true,
     "typescript.tsserver.log": "normal",
@@ -905,12 +911,6 @@
     "typescript.updateImportsOnFileMove.enabled": "always",
     "typescript.validate.enable": true,
     "typescript.workspaceSymbols.scope": "allOpenProjects",
-    // Vitest
-    "vitest.changeBackgroundColor": true,
-    "vitest.commandLine": "pnpm test",
-    "vitest.debugExclude": ["<node_internals>/**", "**/node_modules/**"],
-    "vitest.enable": true,
-    "vitest.showFailMessages": true,
     // IntelliCode
     "vsintellicode.features.python.deepLearning": "default",
     "vsintellicode.java.completionsEnabled": true,
@@ -920,7 +920,6 @@
     "vsintellicode.sql.completionsEnabled": true,
     "vsintellicode.typescript.completionsEnabled": true,
     // Window
-    "window.autoDetectColorScheme": true,
     "window.commandCenter": true,
     "window.zoomLevel": 0,
     // Workbench
