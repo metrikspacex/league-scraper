@@ -23,7 +23,6 @@ const routeLog = async (
     _response.on("close", () => {
       const bytes = Buffer.from(JSON.stringify(_request.body)).length;
       Logger.get().log(
-        "#FFA500",
         "Routes",
         `${time()} - ${_request.method} - Response:[${(
           _response._contentLength / 1000

@@ -29,24 +29,15 @@ class Database {
         pass: databasePass,
         user: databaseUser,
       });
-      Logger.get().log("#3BB143", "Database", "Connected successfully");
-      Logger.get().log("#3BB143", "Database", "Clearing");
-      connect.connection.db.dropDatabase({
-        dbName: "api",
-      });
       const connection = connect.connection.useDb("api");
       Database._connection = connection;
     } catch (error: any) {
       if (error instanceof mongoose.Error) {
-        Logger.get().log("#3BB143", "Database", "Connection failed");
+        Logger.get().log("Database", "Connection failed");
         throw new Error(`Database connection failed ${error.message}`);
       }
 
-      Logger.get().log(
-        "#3BB143",
-        "Database",
-        "Connection failed, unknown error"
-      );
+      Logger.get().log("Database", "Connection failed, unknown error");
       throw new Error("Database connection failed", error);
     }
   }

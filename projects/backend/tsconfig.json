@@ -1,44 +1,12 @@
 {
-  "compilerOptions": {
-    "allowImportingTsExtensions": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "baseUrl": ".",
-    "checkJs": true,
-    "esModuleInterop": true,
-    "exactOptionalPropertyTypes": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "lib": ["ESNext"],
-    "module": "ES2020",
-    "moduleResolution": "bundler",
-    "noEmit": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "paths": {
-      "@/assets/*": ["./src/assets/*"],
-      "@/configs": ["./src/configs"],
-      "@/controllers": ["./src/controllers"],
-      "@/middlewares": ["./src/middlewares"],
-      "@/models": ["./src/models"],
-      "@/routes": ["./src/routes"],
-      "@/services": ["./src/services"],
-      "@/types": ["./types/"],
-      "@/utilities": ["src/utilities"]
+  "files": [],
+  "include": [],
+  "references": [
+    {
+      "path": "./src/tsconfig.json"
     },
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "target": "ES2020",
-    "types": ["node"],
-    "typeRoots": ["./node_modules/@types", "./types/"],
-    "useDefineForClassFields": true
-  },
-  "include": ["src", "tests", "tsup.config.ts", "./types/"]
+    {
+      "path": "./tests/tsconfig.json"
+    }
+  ]
 }

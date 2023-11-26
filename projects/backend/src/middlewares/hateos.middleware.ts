@@ -61,9 +61,15 @@ const hateos = async (
       });
     }
 
-    _request.hateos = {
-      ..._links,
+    const json_ = _response.json;
+    _response.json = (object) => {
+      object.hateos = {
+        ..._links,
+      };
+      json_.call(_response, object);
+      return _response;
     };
+
     _next();
   };
 

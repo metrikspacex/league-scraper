@@ -7,25 +7,7 @@ class RootController {
     _response: Response,
     _next: NextFunction
   ): Promise<void> {
-    _response
-      .json({
-        data: {},
-        ..._request.hateos,
-      })
-      .status(200);
-    _next();
-  }
-  public async incoming(
-    _request: Request,
-    _response: Response,
-    _next: NextFunction
-  ): Promise<void> {
-    console.log(_request.body);
-    _response
-      .json({
-        data: {},
-      })
-      .status(200);
+    _response.json({}).status(200);
     _next();
   }
 }

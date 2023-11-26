@@ -6,12 +6,7 @@ class MasteryController {
     _response: Response,
     _next: NextFunction
   ): Promise<void> {
-    _response
-      .json({
-        response: {},
-        ..._request.hateos,
-      })
-      .status(200);
+    _response.json({}).status(200);
     _next();
   }
 }

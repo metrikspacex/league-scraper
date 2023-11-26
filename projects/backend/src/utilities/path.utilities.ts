@@ -1,8 +1,11 @@
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-// TODO: Singleton
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const pathFrom = (path: string, from: string): string => {
   return join(dirname(fileURLToPath(from)), path);
 };
-export { pathFrom };
+
+export { __dirname, __filename, pathFrom };

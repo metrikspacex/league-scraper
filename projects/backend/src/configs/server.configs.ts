@@ -42,6 +42,7 @@ class ServerConfigs {
   private static _base: Base;
   private static _compressLevel: CompressLevel;
   private static _compressMemLevel: CompressMemLevel;
+  private static _compressOn: CompressOn;
   private static _databasePass: DatabasePass;
   private static _databaseURL: DatabaseURL;
   private static _databaseUser: DatabaseUser;
@@ -50,8 +51,10 @@ class ServerConfigs {
   private static _hateoasPath: HateoasPath;
   private static _hostname: Hostname;
   private static _parseLimit: ParseLimit;
+  private static _parseOn: ParseOn;
   private static _port: Port;
   private static _protocol: Protocol;
+  private static _redirectOn: RedirectOn;
   private static _routeLogOn: RouteLogOn;
   private static _routeLogPath: RouteLogPath;
   private static _routes: Routes;
@@ -75,18 +78,21 @@ class ServerConfigs {
     ServerConfigs._compressMemLevel = Number(
       process.env.compressMemLevel
     ) as CompressMemLevel;
+    ServerConfigs._compressOn = Boolean(process.env.compressOn);
     ServerConfigs._databasePass = String(process.env.databasePass);
     ServerConfigs._databaseURL = String(process.env.databaseURL) as DatabaseURL;
     ServerConfigs._databaseUser = String(process.env.databaseUser);
     ServerConfigs._environment = String(process.env.environment) as Environment;
-    ServerConfigs._hateoasOn = Boolean(process.env.hateoas);
+    ServerConfigs._hateoasOn = Boolean(process.env.hateoasOn);
     ServerConfigs._hostname = String(process.env.hostname);
     ServerConfigs._parseLimit = String(process.env.parseLimit) as ParseLimit;
+    ServerConfigs._parseOn = Boolean(process.env.parseOn);
     ServerConfigs._port = Number(process.env.port);
     ServerConfigs._protocol = String(process.env.protocol) as Protocol;
+    ServerConfigs._redirectOn = Boolean(process.env.redirectOn);
     ServerConfigs._routeLogOn = Boolean(process.env.routeLog);
     ServerConfigs._routes = {};
-    ServerConfigs._serveOn = Boolean(process.env.serve);
+    ServerConfigs._serveOn = Boolean(process.env.serveOn);
     ServerConfigs._servePath = String(process.env.servePath) as ServePath;
     ServerConfigs._version = process.env.version;
 
@@ -98,7 +104,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the instance of ServerConfigs
+   * @description
    */
   public static get(): ServerConfigs {
     if (!ServerConfigs.instance) {
@@ -108,28 +114,26 @@ class ServerConfigs {
   }
 
   /**
-   * @description Set the hateoas middleware path to run on
    * @access private
+   * @description
    */
   private static setHateoasPath(): void {
-    if (process.env.hateoasPath === "global") ServerConfigs._hateoasPath = "/";
-    ServerConfigs._hateoasPath = process.env.hateoasPath;
+    ServerConfigs._hateoasPath =
+      process.env.hateoasPath === "global" ? "/" : process.env.hateoasPath;
   }
 
   /**
-   * @description Set the routelog middleware path to run on
    * @access private
+   * @description
    */
   private static setRouteLogPath(): void {
-    if (process.env.routeLogPath === "global")
-      ServerConfigs._routeLogPath = "/";
-    ServerConfigs._routeLogPath = process.env.routeLogPath;
+    ServerConfigs._routeLogPath =
+      process.env.routeLogPath === "global" ? "/" : process.env.routeLogPath;
   }
 
   /**
-   * @description Set routes for the server based on the process.env.routes,
-   *              filtering what is allowed to be used
    * @access private
+   * @description
    */
   private static setRoutes(): void {
     const { _allRoutes, _base, _routes, _version } = ServerConfigs;
@@ -153,7 +157,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the base route of the server
+   * @description
    * @example "/api"
    */
   public get base(): Base {
@@ -162,7 +166,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the base route of the server
+   * @description
    */
   private set base(value: Base) {
     ServerConfigs._base = value;
@@ -170,7 +174,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the compression level of the server
+   * @description
    * @example 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
    */
   public get compressLevel(): CompressLevel {
@@ -179,7 +183,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the compression level of the server
+   * @description
    */
   private set compressLevel(value: CompressLevel) {
     ServerConfigs._compressLevel = value;
@@ -187,7 +191,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the compression memory level of the server
+   * @description
    * @example 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
    */
   public get compressMemLevel(): CompressMemLevel {
@@ -196,7 +200,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the compression memory level of the server
+   * @description
    */
   private set compressMemLevel(value: CompressMemLevel) {
     ServerConfigs._compressMemLevel = value;
@@ -204,7 +208,24 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the database password of the server
+   * @description
+   * @example true | false
+   */
+  public get compressOn(): CompressOn {
+    return ServerConfigs._compressOn;
+  }
+
+  /**
+   * @access private
+   * @description
+   */
+  private set compressOn(value: CompressOn) {
+    ServerConfigs._compressOn = value;
+  }
+
+  /**
+   * @access public
+   * @description
    * @example "password"
    */
   public get databasePass(): DatabasePass {
@@ -213,7 +234,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the database password of the server
+   * @description
    */
   private set databasePass(value: DatabasePass) {
     ServerConfigs._databasePass = value;
@@ -221,7 +242,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the database URL of the server
+   * @description
    * @example "mongodb://localhost:27017"
    */
   public get databaseURL(): DatabaseURL {
@@ -230,7 +251,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the database URL of the server
+   * @description
    */
   private set databaseURL(value: DatabaseURL) {
     ServerConfigs._databaseURL = value;
@@ -238,7 +259,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the database user of the server
+   * @description
    * @example "user"
    */
   public get databaseUser(): DatabaseUser {
@@ -247,7 +268,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the database user of the server
+   * @description
    */
   private set databaseUser(value: DatabaseUser) {
     ServerConfigs._databaseUser = value;
@@ -255,7 +276,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @summary Get the process.env.NODE_ENV
+   * @summary
    * @example
    *  | "development"
    *  | "development.local"
@@ -268,7 +289,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the environment of the server
+   * @description
    */
   private set environment(value: Environment) {
     ServerConfigs._environment = value;
@@ -276,7 +297,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the hateoas of the server
+   * @description
    * @example true | false
    */
   public get hateoasOn(): HateoasOn {
@@ -285,7 +306,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the hateoas of the server
+   * @description
    */
   private set hateoasOn(value: HateoasOn) {
     ServerConfigs._hateoasOn = value;
@@ -293,7 +314,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the hateoas path of the server
+   * @description
    * @example "global" | "/api/v1"
    */
   public get hateoasPath(): HateoasPath {
@@ -302,7 +323,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the hateoas path of the server
+   * @description
    */
   private set hateoasPath(value: HateoasPath) {
     ServerConfigs._hateoasPath = value;
@@ -310,7 +331,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the hostname of the server
+   * @description
    * @example "localhost" -> 127.0.0.1
    */
   public get hostname(): Hostname {
@@ -319,7 +340,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the hostname of the server
+   * @description
    */
   private set hostname(value: Hostname) {
     ServerConfigs._hostname = value;
@@ -327,7 +348,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the parse limit of the server
+   * @description
    * @example "50mb" | "50kb"
    */
   public get parseLimit(): ParseLimit {
@@ -336,7 +357,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the parse limit of the server
+   * @description
    */
   private set parseLimit(value: ParseLimit) {
     ServerConfigs._parseLimit = value;
@@ -344,7 +365,24 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the port of the server
+   * @description
+   * @example true | false
+   */
+  public get parseOn(): ParseOn {
+    return ServerConfigs._parseOn;
+  }
+
+  /**
+   * @access private
+   * @description
+   */
+  private set parseOn(value: ParseOn) {
+    ServerConfigs._parseOn = value;
+  }
+
+  /**
+   * @access public
+   * @description
    * @example 3000
    */
   public get port(): Port {
@@ -353,7 +391,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the port of the server
+   * @description
    */
   private set port(value: Port) {
     ServerConfigs._port = value;
@@ -361,7 +399,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the protocol of the server
+   * @description
    * @example "http" | "https"
    */
   public get protocol(): Protocol {
@@ -370,7 +408,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the protocol of the server
+   * @description
    */
   private set protocol(value: Protocol) {
     ServerConfigs._protocol = value;
@@ -378,7 +416,24 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the route log of the server
+   * @description
+   * @example true | false
+   */
+  public get redirectOn(): RedirectOn {
+    return ServerConfigs._redirectOn;
+  }
+
+  /**
+   * @access private
+   * @description
+   */
+  private set redirectOn(value: RedirectOn) {
+    ServerConfigs._redirectOn = value;
+  }
+
+  /**
+   * @access public
+   * @description
    * @example true | false
    */
   public get routeLogOn(): RouteLogOn {
@@ -387,7 +442,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the route log of the server
+   * @description
    */
   private set routeLogOn(value: RouteLogOn) {
     ServerConfigs._routeLogOn = value;
@@ -395,7 +450,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the route log path of the server
+   * @description
    * @example "global" | "/api/v1"
    */
   public get routeLogPath(): RouteLogPath {
@@ -404,7 +459,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the route log path of the server
+   * @description
    */
   private set routeLogPath(value: RouteLogPath) {
     ServerConfigs._routeLogPath = value;
@@ -412,7 +467,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the routes of the server
+   * @description
    * @example ["/api/v1/account", "/api/v1/asset", ...]
    */
   public get routes(): Routes {
@@ -421,7 +476,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the routes of the server
+   * @description
    */
   private set routes(value: Routes) {
     ServerConfigs._routes = value;
@@ -429,7 +484,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the static path of the server
+   * @description
    * @example "/public"
    */
   public get serveOn(): ServeOn {
@@ -438,7 +493,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the static path of the server
+   * @description
    */
   private set serveOn(value: ServeOn) {
     ServerConfigs._serveOn = value;
@@ -446,7 +501,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the static path of the server
+   * @description
    * @example "global" | "/api/v1"
    */
   public get servePath(): ServePath {
@@ -455,7 +510,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the static path of the server
+   * @description
    */
   private set servePath(value: ServePath) {
     ServerConfigs._servePath = value;
@@ -463,7 +518,7 @@ class ServerConfigs {
 
   /**
    * @access public
-   * @description Get the version of the server
+   * @description
    * @example "v1" | "v2"
    */
   public get version(): Version {
@@ -472,7 +527,7 @@ class ServerConfigs {
 
   /**
    * @access private
-   * @description Set the version of the server
+   * @description
    */
   private set version(value: Version) {
     ServerConfigs._version = value;

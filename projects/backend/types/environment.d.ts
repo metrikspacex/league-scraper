@@ -1,5 +1,7 @@
 /// <reference types="express-serve-static-core" />
 /// <reference types="serve-static" />
+/// <reference types="vitest/importMeta" />
+
 import type { Router } from "express";
 
 declare global {
@@ -7,6 +9,7 @@ declare global {
   type Base = string;
   type CompressLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
   type CompressMemLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+  type CompressOn = boolean;
   type DatabasePass = string;
   type DatabaseURL = `mongodb://${Hostname}:27017`;
   type DatabaseUser = string;
@@ -19,8 +22,10 @@ declare global {
   type HateoasPath = "/" | "global" | RouteMap<Version>;
   type Hostname = "localhost" | string;
   type ParseLimit = `${number}mb` | `${number}kb`;
+  type ParseOn = boolean;
   type Port = number;
   type Protocol = "http" | "https";
+  type RedirectOn = boolean;
   type RouteLogOn = boolean;
   type RouteLogPath = "/" | "global" | RouteMap<Version>;
   type RouteMap<version extends Version> =
@@ -66,23 +71,35 @@ declare global {
       base: Base;
       compressLevel: CompressLevel;
       compressMemLevel: CompressMemLevel;
+      compressOn: CompressOn;
       databasePass: DatabasePass;
       databaseURL: DatabaseURL;
       databaseUser: DatabaseUser;
       environment: Environment;
-      hateoas: HateoasOn;
+      hateoasOn: HateoasOn;
       hateoasPath: HateoasPath;
       hostname: Hostname;
       parseLimit: ParseLimit;
+      parseOn: ParseOn;
       port: Port;
       protocol: Protocol;
+      redirectOn: RedirectOn;
       routeLog: RouteLogOn;
       routeLogPath: RouteLogPath;
+      // TODO: Fix this
       routes: string;
-      serve: ServeOn;
+      serveOn: ServeOn;
       servePath: ServePath;
       version: Version;
     }
+  }
+
+  // Vitest
+  interface ImportMetaEnv {}
+
+  interface ImportMeta {
+    readonly env: ImportMetaEnv;
+    readonly vitest?: typeof import("vitest");
   }
 }
 

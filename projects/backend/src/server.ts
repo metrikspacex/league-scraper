@@ -1,4 +1,3 @@
-/* eslint-disable eqeqeq */
 import type { Application } from "express";
 import express from "express";
 
@@ -11,14 +10,23 @@ import {
   routeLog,
   serve,
 } from "@/middlewares";
-import { AccountModel } from "@/models";
-import { Database, Logger, pathFrom } from "@/utilities";
+import {
+  Database,
+  dataDragonSyncChampionsToDatabase,
+  dataDragonSyncLanguagesToDatabase,
+  dataDragonSyncVersionsToDatabase,
+  leagueScraperSyncAccountsToDatabase,
+  Logger,
+  pathFrom,
+} from "@/utilities";
 
 class Server {
   private application!: Application;
+
   public constructor() {
     this.application = express();
   }
+
   public async start(callback?: () => void): Promise<void> {
     await this.loadConfigurations();
     await this.initializeDatabase();
@@ -29,7 +37,6 @@ class Server {
       this.application.get("hostname"),
       () => {
         Logger.get().log(
-          "#3BB143",
           "Server",
           `Server is running ${this.application.get(
             "hostname"
@@ -39,8 +46,9 @@ class Server {
       }
     );
   }
+
   private async loadConfigurations(): Promise<void> {
-    Logger.get().log("#3BB143", "Server", "Loading configurations");
+    Logger.get().log("Server", "Loading configurations");
     const { hostname, port } = ServerConfigs.get();
 
     this.application.set("hostname", hostname);
@@ -48,39 +56,53 @@ class Server {
     this.application.set("view engine", "hbs");
     this.application.set("views", pathFrom("./views/", import.meta.url));
   }
+
   private async initializeDatabase(): Promise<void> {
-    Logger.get().log("#3BB143", "Server", "Initializing database");
-    const { databaseUser, databasePass } = ServerConfigs.get();
+    Logger.get().log("Database", "Initializing database");
+    await Database.get().initialize();
 
-    const db = Database.get();
-    await db.initialize().finally(async () => {
-      Logger.get().log("#3BB143", "Database", "Creating account");
+    const healthDatabase = {
+      account: true,
+      asset: false,
+      challenge: false,
+      champion: true,
+      health: true,
+      item: false,
+      language: true,
+      management: false,
+      mastery: false,
+      region: false,
+      role: false,
+      rune: false,
+      spell: false,
+      version: true,
+    };
 
-      const _id = AccountModel.exists({
-        where: {
-          email: `${databaseUser}@gmail.com`,
-          password: `${databasePass}`,
-          username: `${databaseUser}`,
-        },
-      });
-      if (_id === null) {
-        AccountModel.create({
-          email: `${databaseUser}@gmail.com`,
-          password: `${databasePass}`,
-          username: `${databaseUser}`,
-        });
-      }
-    });
+    Logger.get().log("Database", "Syncing accounts");
+    healthDatabase.account = await leagueScraperSyncAccountsToDatabase();
+
+    Logger.get().log("Database", "Syncing champions");
+    healthDatabase.champion = await dataDragonSyncChampionsToDatabase();
+
+    Logger.get().log("Database", "Syncing languages");
+    healthDatabase.language = await dataDragonSyncLanguagesToDatabase();
+
+    Logger.get().log("Database", "Syncing versions");
+    healthDatabase.version = await dataDragonSyncVersionsToDatabase();
   }
+
   private async loadMiddlewares(): Promise<void> {
-    Logger.get().log("#3BB143", "Server", "Loading middlewares");
+    Logger.get().log("Server", "Loading middlewares");
     const {
       base,
       compressLevel,
       compressMemLevel,
+      compressOn,
       hateoasOn,
       hateoasPath,
       parseLimit,
+      parseOn,
+      redirectOn,
       routeLogOn,
       routeLogPath,
       serveOn,
@@ -88,20 +110,16 @@ class Server {
       version,
     } = ServerConfigs.get();
 
-    const parseOn = true;
-    const compressOn = true;
-    const redirectOn = true;
+    if (compressOn)
+      compress(this.application, {
+        level: compressLevel,
+        memLevel: compressMemLevel,
+      });
 
     if (parseOn)
       parse(this.application, {
         extended: true,
         limit: parseLimit,
-      });
-
-    if (compressOn)
-      compress(this.application, {
-        level: compressLevel,
-        memLevel: compressMemLevel,
       });
 
     if (serveOn)
@@ -125,13 +143,15 @@ class Server {
         path: routeLogPath,
       });
   }
+
   private async loadRoutes(): Promise<void> {
-    Logger.get().log("#3BB143", "Server", "Loading routes");
+    Logger.get().log("Server", "Loading routes");
     const { routes } = ServerConfigs.get();
     for (const [_map, route] of Object.entries(routes)) {
       if (route) this.application.use(route);
     }
   }
 }
+
 const server = new Server();
 server.start();
